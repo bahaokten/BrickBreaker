@@ -61,7 +61,7 @@ def drawLevel(level, ground, width=0, height=0, marginY=True, addX=0, addY=0, ou
 
 def drawBrick(col, row, cl, width, height, marginY, addX, addY, outline, ground=()):
     if ground == ():
-        ground = main_Vars.data_actionground
+        ground = main_Vars.data_paddleground
     # Col(x) max = 0-14
     # Row(y) max = 0-25
     # global main_Vars.data_actionground
@@ -111,7 +111,7 @@ def drawMenu():
     # drawLevel(main_Vars.data_level1,main_Vars.data_background)
     print("done!")
     main_Vars.data_allSprites.update()
-    main_Vars.data_allSprites.draw(main_Vars.data_actionground)
+    #main_Vars.data_allSprites.draw(main_Vars.data_paddleground)
 
 
 def drawMenuBackground():
@@ -197,16 +197,19 @@ def main():
         pygame.display.set_caption(text)
         drawGame()
 
-        # hersey burada olmali
-        """
-iiiooooooo
+
         main_Vars.screen.blit(main_Vars.data_background, (0, 0))
-        main_Vars.screen.blit(main_Vars.data_actionground, (0, 0))
-         main_Vars.screen.blit(main_Vars.data_foreground, (0, 0))
+        main_Vars.screen.blit(main_Vars.data_paddleground, (0, main_Vars.data_paddleY))
         main_Vars.screen.blit(main_Vars.data_buttonground, (0, 0))
         main_Vars.screen.blit(main_Vars.data_textground, (0, 0))
         """
-        pygame.display.flip()
+        #main_Vars.screen.blit(main_Vars.data_foreground, (0, 0))
+        main_Vars.screen.blit(main_Vars.data_buttonground, (0, 0))
+        main_Vars.screen.blit(main_Vars.data_textground, (0, 0))
+        """
+        pygame.display.update(main_Vars.data_rect)
+        main_Vars.data_rect = []
+        #pygame.display.update()
 
     # Finish Pygame.
     pygame.quit()

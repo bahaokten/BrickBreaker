@@ -24,7 +24,12 @@ data_state = "menu"
 data_canvasX = 960
 data_canvasY = 700
 data_tmp = ()
+#rects needed to be drawn
+data_rect = [(0,0,data_canvasX,data_canvasY)]
+#tick used by menus etc
 data_tick1 = False
+# -------Sprites--------#
+data_allSprites = pygame.sprite.Group()
 # --BUTTON--#
 data_spriteGroup_buttons = pygame.sprite.Group()
 # ---PADDLE---#
@@ -40,8 +45,7 @@ data_brickSizeY = 25
 data_brickSizeXSelect = 13
 data_brickSizeYSelect = 5
 data_brickYMargin = 10
-# ---Sprites---#
-data_allSprites = pygame.sprite.Group()
+
 # Paddle#
 data_paddleY = 300
 # ---INPUT---#
@@ -99,19 +103,19 @@ data_level1 = [
 # [["white","-",1]]
 #flags = FULLSCREEN | DOUBLEBUF
 flags = DOUBLEBUF
-screen = pygame.display.set_mode((960, 700),flags)
+screen = pygame.display.set_mode((960, 700))
 data_background = pygame.Surface(screen.get_size())
-data_actionground = pygame.Surface(screen.get_size(),flags)
+data_paddleground = pygame.Surface((960,21))
 #data_actionground = data_actionground.convert_alpha()
-data_foreground = pygame.Surface(screen.get_size(), pygame.SRCALPHA, 32)
+data_foreground = pygame.Surface(screen.get_size())
 data_foreground = data_foreground.convert_alpha()
-data_buttonground = pygame.Surface(screen.get_size(), pygame.SRCALPHA, 32)
+data_buttonground = pygame.Surface(screen.get_size(),pygame.SRCALPHA, 32)
 data_buttonground = data_buttonground.convert_alpha()
-data_textground = pygame.Surface(screen.get_size(), pygame.SRCALPHA, 32)
+data_textground = pygame.Surface(screen.get_size(),pygame.SRCALPHA, 32)
 data_textground = data_textground.convert_alpha()
 data_background = data_background.convert()
 data_mousePressedPos = ()
-data_actionground.set_colorkey((1,2,3),RLEACCEL)
+data_paddleground.set_colorkey((1,2,3),RLEACCEL)
 
 """
 def init():

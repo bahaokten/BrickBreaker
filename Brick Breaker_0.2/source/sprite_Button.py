@@ -43,6 +43,7 @@ class Button(pygame.sprite.Sprite):
 
     def update(self, state):
         if main_Modules.mouseCollision(self.X, self.Y, self.W, self.H):
+            main_Vars.data_rect.append((self.rect[0],self.rect[1],self.W,self.H))
             # self.image.fill((0,0,0,0))
             if state == "d":
                 self.selfState = "d"
@@ -51,7 +52,8 @@ class Button(pygame.sprite.Sprite):
                                  (self.depth, self.depth, self.W - (self.depth * 2), self.H - (self.depth * 2)))
                 main_Vars.data_buttonground.blit(self.image, (self.X, self.Y))
 
-        if state == "u" and self.selfState == "d":
+        elif state == "u" and self.selfState == "d":
+            main_Vars.data_rect.append((self.rect[0],self.rect[1],self.W,self.H))
             self.selfState = "u"
             pygame.draw.rect(self.image, (self.R1, self.G1, self.B1), (0, 0, self.W, self.H))
             pygame.draw.rect(self.image, (self.R2 * 0.3, self.G2 * 0.3, self.B2 * 0.3),
