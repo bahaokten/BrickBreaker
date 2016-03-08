@@ -199,6 +199,7 @@ def main():
 
         # hersey burada olmali
         """
+iiiooooooo
         main_Vars.screen.blit(main_Vars.data_background, (0, 0))
         main_Vars.screen.blit(main_Vars.data_actionground, (0, 0))
          main_Vars.screen.blit(main_Vars.data_foreground, (0, 0))
