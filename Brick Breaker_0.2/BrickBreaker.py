@@ -7,8 +7,6 @@ import main_Vars
 import main_Draw
 
 
-
-
 """
 def drawMenu():
     global main_Vars.data_foreDraw
