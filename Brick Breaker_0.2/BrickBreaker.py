@@ -92,10 +92,10 @@ def main():
         doGame()
 
 
-        main_Vars.screen.blit(main_Vars.data_background, (0, 0))
-        main_Vars.screen.blit(main_Vars.data_paddleground, (0, main_Vars.data_paddleY))
-        main_Vars.screen.blit(main_Vars.data_buttonground, (0, 0))
-        main_Vars.screen.blit(main_Vars.data_textground, (0, 0))
+        main_Vars.screen.blit(main_Vars.data_backGround, (0, 0))
+        main_Vars.screen.blit(main_Vars.data_paddleGround, (0, main_Vars.data_paddleY))
+        main_Vars.screen.blit(main_Vars.data_buttonGround, (0, 0))
+        main_Vars.screen.blit(main_Vars.data_textGround, (0, 0))
         """
         #main_Vars.screen.blit(main_Vars.data_foreground, (0, 0))
         main_Vars.screen.blit(main_Vars.data_buttonground, (0, 0))

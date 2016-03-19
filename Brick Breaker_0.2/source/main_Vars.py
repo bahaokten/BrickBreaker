@@ -28,17 +28,24 @@ data_tmp = ()
 data_rect = [(0,0,data_canvasX,data_canvasY)]
 #tick used by menus etc
 data_tick1 = False
+
+###############################################################################################################################################3
 # -------Sprites--------#
 data_allSprites = pygame.sprite.Group()
 # --BUTTON--#
 data_spriteGroup_buttons = pygame.sprite.Group()
 # ---PADDLE---#
 data_spriteGroup_paddle = pygame.sprite.Group()
+# ---BRICKS--#
+data_spriteGroup_bricks = pygame.sprite.Group()
+###############################################################################################################################################3
 
 # ---FONTS&TEXTS---#
 data_textSize = 0
 # data_fontFile1 = "Resources/Mona Shark.otf"
 data_fontFile1 = "Resources/Font_1.ttf"
+
+
 # ---BRICKS---#
 data_brickSizeX = 64
 data_brickSizeY = 25
@@ -48,10 +55,14 @@ data_brickYMargin = 10
 
 # Paddle#
 data_paddleY = 300
-# ---INPUT---#
+
+
+################################################### ---INPUT---####################################3
 data_left = False
 data_right = False
-# ---LEVEL---#
+
+
+# ###############################################3---LEVEL---##################################33
 data_currentLevel = []
 data_lvlLayout = [[[], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
                   [[], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
@@ -75,47 +86,51 @@ data_lvlLayout = [[[], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
                   [[], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
                   [[], [], [], [], [], [], [], [], [], [], [], [], [], [], []]]
 data_level1 = [
-    [[ORANGE, "-", 1], [ORANGE, "-", 1], [ORANGE, "-", 1], [YELLOW, "-", 1], [GREEN, "-", 1], [DARKGREEN, "-", 1],
-     [DARKRED, "-", 1], [LIGHTBLACK, "-", 1], [DARKRED, "-", 1],
-     [DARKGREEN, "-", 1], [GREEN, "-", 1], [YELLOW, "-", 1], [ORANGE, "-", 1], [ORANGE, "-", 1], [ORANGE, "-", 1]],
-    [[ORANGE, "-", 1], [ORANGE, "-", 1], [ORANGE, "-", 1], [YELLOW, "-", 1], [GREEN, "-", 1], [DARKGREEN, "-", 1],
-     [DARKRED, "-", 1], [LIGHTBLACK, "-", 1], [DARKRED, "-", 1],
-     [DARKGREEN, "-", 1], [GREEN, "-", 1], [YELLOW, "-", 1], [ORANGE, "-", 1], [ORANGE, "-", 1], [ORANGE, "-", 1]],
-    [[], [], [ORANGE, "-", 1], [YELLOW, "-", 1], [GREEN, "-", 1], [DARKGREEN, "-", 1], [DARKRED, "-", 1],
-     [LIGHTBLACK, "-", 1], [DARKRED, "-", 1],
-     [DARKGREEN, "-", 1], [GREEN, "-", 1], [YELLOW, "-", 1], [ORANGE, "-", 1], [], []],
-    [[ORANGE, "-", 1], [ORANGE, "-", 1], [ORANGE, "-", 1], [YELLOW, "-", 1], [GREEN, "-", 1], [DARKGREEN, "-", 1],
-     [DARKRED, "-", 1], [LIGHTBLACK, "-", 1], [DARKRED, "-", 1],
-     [DARKGREEN, "-", 1], [GREEN, "-", 1], [YELLOW, "-", 1], [ORANGE, "-", 1], [ORANGE, "-", 1], [ORANGE, "-", 1]],
-    [[ORANGE, "-", 1], [ORANGE, "-", 1], [ORANGE, "-", 1], [YELLOW, "-", 1], [GREEN, "-", 1], [DARKGREEN, "-", 1],
-     [DARKRED, "-", 1], [LIGHTBLACK, "-", 1], [DARKRED, "-", 1],
-     [DARKGREEN, "-", 1], [GREEN, "-", 1], [YELLOW, "-", 1], [ORANGE, "-", 1], [ORANGE, "-", 1], [ORANGE, "-", 1]],
-    [[ORANGE, "-", 1], [ORANGE, "-", 1], [ORANGE, "-", 1], [YELLOW, "-", 1], [GREEN, "-", 1], [DARKGREEN, "-", 1],
-     [DARKRED, "-", 1], [LIGHTBLACK, "-", 1], [DARKRED, "-", 1],
-     [DARKGREEN, "-", 1], [GREEN, "-", 1], [YELLOW, "-", 1], [ORANGE, "-", 1], [ORANGE, "-", 1], [ORANGE, "-", 1]],
-    [[ORANGE, "-", 1], [ORANGE, "-", 1], [ORANGE, "-", 1], [YELLOW, "-", 1], [GREEN, "-", 1], [DARKGREEN, "-", 1],
-     [DARKRED, "-", 1], [LIGHTBLACK, "-", 1], [DARKRED, "-", 1],
-     [DARKGREEN, "-", 1], [GREEN, "-", 1], [YELLOW, "-", 1], [ORANGE, "-", 1], [ORANGE, "-", 1], [ORANGE, "-", 1]],
-    [[ORANGE, "-", 1], [ORANGE, "-", 1], [ORANGE, "-", 1], [YELLOW, "-", 1], [GREEN, "-", 1], [DARKGREEN, "-", 1],
-     [DARKRED, "-", 1], [LIGHTBLACK, "-", 1], [DARKRED, "-", 1],
-     [DARKGREEN, "-", 1], [GREEN, "-", 1], [YELLOW, "-", 1], [ORANGE, "-", 1], [ORANGE, "-", 1], [ORANGE, "-", 1]]]
+    [[(ORANGE), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1], [(YELLOW), "-", 1], [(GREEN), "-", 1], [(DARKGREEN), "-", 1],
+     [(DARKRED), "-", 1], [(LIGHTBLACK), "-", 1], [(DARKRED), "-", 1],
+     [(DARKGREEN), "-", 1], [(GREEN), "-", 1], [(YELLOW), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1]],
+    [[(ORANGE), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1], [(YELLOW), "-", 1], [(GREEN), "-", 1], [(DARKGREEN), "-", 1],
+     [(DARKRED), "-", 1], [(LIGHTBLACK), "-", 1], [(DARKRED), "-", 1],
+     [(DARKGREEN), "-", 1], [(GREEN), "-", 1], [(YELLOW), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1]],
+    [[], [], [(ORANGE), "-", 1], [(YELLOW), "-", 1], [(GREEN), "-", 1], [(DARKGREEN), "-", 1], [(DARKRED), "-", 1],
+     [(LIGHTBLACK), "-", 1], [(DARKRED), "-", 1],
+     [(DARKGREEN), "-", 1], [(GREEN), "-", 1], [(YELLOW), "-", 1], [(ORANGE), "-", 1], [], []],
+    [[(ORANGE), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1], [(YELLOW), "-", 1], [(GREEN), "-", 1], [(DARKGREEN), "-", 1],
+     [(DARKRED), "-", 1], [(LIGHTBLACK), "-", 1], [(DARKRED), "-", 1],
+     [(DARKGREEN), "-", 1], [(GREEN), "-", 1], [(YELLOW), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1]],
+    [[(ORANGE), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1], [(YELLOW), "-", 1], [(GREEN), "-", 1], [(DARKGREEN), "-", 1],
+     [(DARKRED), "-", 1], [(LIGHTBLACK), "-", 1], [(DARKRED), "-", 1],
+     [(DARKGREEN), "-", 1], [(GREEN), "-", 1], [(YELLOW), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1]],
+    [[(ORANGE), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1], [(YELLOW), "-", 1], [(GREEN), "-", 1], [(DARKGREEN), "-", 1],
+     [(DARKRED), "-", 1], [(LIGHTBLACK), "-", 1], [(DARKRED), "-", 1],
+     [(DARKGREEN), "-", 1], [(GREEN), "-", 1], [(YELLOW), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1]],
+    [[(ORANGE), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1], [(YELLOW), "-", 1], [(GREEN), "-", 1], [(DARKGREEN), "-", 1],
+     [(DARKRED), "-", 1], [(LIGHTBLACK), "-", 1], [(DARKRED), "-", 1],
+     [(DARKGREEN), "-", 1], [(GREEN), "-", 1], [(YELLOW), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1]],
+    [[(ORANGE), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1], [(YELLOW), "-", 1], [(GREEN), "-", 1], [(DARKGREEN), "-", 1],
+     [(DARKRED), "-", 1], [(LIGHTBLACK), "-", 1], [(DARKRED), "-", 1],
+     [(DARKGREEN), "-", 1], [(GREEN), "-", 1], [(YELLOW), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1]]]
+
+##########GROUNDS####################################
 # color,powerup,lives
 # [["white","-",1]]
 #flags = FULLSCREEN | DOUBLEBUF
 flags = DOUBLEBUF
 screen = pygame.display.set_mode((960, 700))
-data_background = pygame.Surface(screen.get_size())
-data_paddleground = pygame.Surface((960,21))
+data_backGround = pygame.Surface(screen.get_size())
+data_paddleGround = pygame.Surface((960,21))
 #data_actionground = data_actionground.convert_alpha()
-data_foreground = pygame.Surface(screen.get_size())
-data_foreground = data_foreground.convert_alpha()
-data_buttonground = pygame.Surface(screen.get_size(),pygame.SRCALPHA, 32)
-data_buttonground = data_buttonground.convert_alpha()
-data_textground = pygame.Surface(screen.get_size(),pygame.SRCALPHA, 32)
-data_textground = data_textground.convert_alpha()
-data_background = data_background.convert()
+"""
+data_foreGround = pygame.Surface(screen.get_size())
+data_foreGround = data_foreGround.convert_alpha()
+"""
+data_buttonGround = pygame.Surface(screen.get_size(),pygame.SRCALPHA, 32)
+data_buttonGround = data_buttonGround.convert_alpha()
+data_textGround = pygame.Surface(screen.get_size(),pygame.SRCALPHA, 32)
+data_textGround = data_textGround.convert_alpha()
+data_backGround = data_backGround.convert()
 data_mousePressedPos = ()
-data_paddleground.set_colorkey((1,2,3),RLEACCEL)
+data_paddleGround.set_colorkey((1,2,3),RLEACCEL)
 
 """
 def init():
@@ -184,10 +199,10 @@ def init():
                           [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]] , [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]] , [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]]
     global data_level1
     data_level1      =   [[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]],\
-                          [[],[],[ORANGE,"-",1],[YELLOW,"-",1],[GREEN,"-",1],[DARKGREEN,"-",1],[DARKRED,"-",1],[LIGHTBLACK,"-",1],[DARKRED,"-",1],\
-                            [DARKGREEN,"-",1],[GREEN,"-",1],[YELLOW,"-",1],[ORANGE,"-",1],[],[]],\
-                          [[],[],[ORANGE,"-",1],[YELLOW,"-",1],[GREEN,"-",1],[DARKGREEN,"-",1],[DARKRED,"-",1],[LIGHTBLACK,"-",1],[DARKRED,"-",1],\
-                            [DARKGREEN,"-",1],[GREEN,"-",1],[YELLOW,"-",1],[ORANGE,"-",1],[],[]]]
+                          [[],[],[(ORANGE),"-",1],[(YELLOW),"-",1],[(GREEN),"-",1],[(DARKGREEN),"-",1],[(DARKRED),"-",1],[(LIGHTBLACK),"-",1],[(DARKRED),"-",1],\
+                            [(DARKGREEN),"-",1],[(GREEN),"-",1],[(YELLOW),"-",1],[(ORANGE),"-",1],[],[]],\
+                          [[],[],[(ORANGE),"-",1],[(YELLOW),"-",1],[(GREEN),"-",1],[(DARKGREEN),"-",1],[(DARKRED),"-",1],[(LIGHTBLACK),"-",1],[(DARKRED),"-",1],\
+                            [(DARKGREEN),"-",1],[(GREEN),"-",1],[(YELLOW),"-",1],[(ORANGE),"-",1],[],[]]]
     #color,powerup,lives
     #[["white","-",1]]
     global screen

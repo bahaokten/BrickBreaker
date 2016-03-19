@@ -29,13 +29,13 @@ class Paddle(pygame.sprite.Sprite):
         if main_Vars.data_left:
             self.X -= self.velX
             main_Vars.data_rect.append((self.X,main_Vars.data_paddleY,98+self.add+self.velX,21))
-            main_Vars.data_paddleground.fill((1, 2, 3))
-            main_Vars.data_paddleground.blit(self.image, [self.X,0])
+            main_Vars.data_paddleGround.fill((1, 2, 3))
+            main_Vars.data_paddleGround.blit(self.image, [self.X,0])
         elif main_Vars.data_right:
             main_Vars.data_rect.append((self.X,main_Vars.data_paddleY,98+self.add+self.velX,21))
             self.X += self.velX
-            main_Vars.data_paddleground.fill((1,2,3))
-            main_Vars.data_paddleground.blit(self.image, [self.X,0])
+            main_Vars.data_paddleGround.fill((1,2,3))
+            main_Vars.data_paddleGround.blit(self.image, [self.X,0])
     def create(self):
         self.image = pygame.Surface([self.add + 98, 21])
         #self.image = self.image.convert_alpha()
@@ -50,8 +50,8 @@ class Paddle(pygame.sprite.Sprite):
         pygame.draw.line(self.image, (55, 55, 55), (18, 0), (self.add + 80, 0), 5)
         pygame.draw.line(self.image, (55, 55, 55), (18, 20), (self.add + 80, 20), 5)
         main_Vars.data_rect.append((self.X,main_Vars.data_paddleY,98+self.add,21))
-        main_Vars.data_paddleground.fill((1,2,3))
-        main_Vars.data_paddleground.blit(self.image, [self.X,0])
+        main_Vars.data_paddleGround.fill((1,2,3))
+        main_Vars.data_paddleGround.blit(self.image, [self.X,0])
         #self.image.set_colorkey((1,2,3))
 
     def info(self):
@@ -63,6 +63,6 @@ def paddleCreator():
     main_Vars.data_spriteGroup_paddle.add(paddle)  # ,something)
     # assert isinstance(main_Vars.data_spriteGroup_paddle.sprites().create, object)
     main_Vars.data_spriteGroup_paddle.sprites()[0].create()
-    main_Vars.data_spriteGroup_paddle.draw(main_Vars.data_paddleground)
-    main_Vars.screen.blit(main_Vars.data_paddleground, (0, 0))
+    main_Vars.data_spriteGroup_paddle.draw(main_Vars.data_paddleGround)
+    main_Vars.screen.blit(main_Vars.data_paddleGround, (0, 0))
 

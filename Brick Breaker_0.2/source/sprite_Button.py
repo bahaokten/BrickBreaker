@@ -50,7 +50,7 @@ class Button(pygame.sprite.Sprite):
                 pygame.draw.rect(self.image, (self.R2, self.G2, self.B2), (0, 0, self.W, self.H))
                 pygame.draw.rect(self.image, (self.R2 * 0.6, self.G2 * 0.6, self.B2 * 0.6),
                                  (self.depth, self.depth, self.W - (self.depth * 2), self.H - (self.depth * 2)))
-                main_Vars.data_buttonground.blit(self.image, (self.X, self.Y))
+                main_Vars.data_buttonGround.blit(self.image, (self.X, self.Y))
 
         elif state == "u" and self.selfState == "d":
             main_Vars.data_rect.append((self.rect[0],self.rect[1],self.W,self.H))
@@ -58,7 +58,7 @@ class Button(pygame.sprite.Sprite):
             pygame.draw.rect(self.image, (self.R1, self.G1, self.B1), (0, 0, self.W, self.H))
             pygame.draw.rect(self.image, (self.R2 * 0.3, self.G2 * 0.3, self.B2 * 0.3),
                              (self.depth, self.depth, self.W - (self.depth * 2), self.H - (self.depth * 2)))
-            main_Vars.data_buttonground.blit(self.image, (self.X, self.Y))
+            main_Vars.data_buttonGround.blit(self.image, (self.X, self.Y))
 
     def create(self):
         self.image = pygame.Surface([main_Vars.screen.get_size()[0], main_Vars.screen.get_size()[1]], pygame.SRCALPHA,

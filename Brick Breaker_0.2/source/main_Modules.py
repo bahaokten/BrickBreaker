@@ -21,7 +21,7 @@ def fitTextDraw(font, limW, limH, text, X1, Y1, R, G, B, Ycorrection=0, Xcorrect
 
 def drawText(x, y, text, R, G, B, ycor=0, xcor=0):
     txt = main_Vars.data_font.render(text, 10, (R, G, B))
-    main_Vars.data_textground.blit(txt, (x + xcor, y + ycor))
+    main_Vars.data_textGround.blit(txt, (x + xcor, y + ycor))
 
 
 def createText(f, size, text="", bold=False, italic=False):
