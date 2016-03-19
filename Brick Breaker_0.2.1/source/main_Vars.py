@@ -86,30 +86,30 @@ data_lvlLayout = [[[], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
                   [[], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
                   [[], [], [], [], [], [], [], [], [], [], [], [], [], [], []]]
 data_level1 = [
-    [[(ORANGE), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1], [(YELLOW), "-", 1], [(GREEN), "-", 1], [(DARKGREEN), "-", 1],
-     [(DARKRED), "-", 1], [(LIGHTBLACK), "-", 1], [(DARKRED), "-", 1],
-     [(DARKGREEN), "-", 1], [(GREEN), "-", 1], [(YELLOW), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1]],
-    [[(ORANGE), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1], [(YELLOW), "-", 1], [(GREEN), "-", 1], [(DARKGREEN), "-", 1],
-     [(DARKRED), "-", 1], [(LIGHTBLACK), "-", 1], [(DARKRED), "-", 1],
-     [(DARKGREEN), "-", 1], [(GREEN), "-", 1], [(YELLOW), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1]],
-    [[], [], [(ORANGE), "-", 1], [(YELLOW), "-", 1], [(GREEN), "-", 1], [(DARKGREEN), "-", 1], [(DARKRED), "-", 1],
-     [(LIGHTBLACK), "-", 1], [(DARKRED), "-", 1],
-     [(DARKGREEN), "-", 1], [(GREEN), "-", 1], [(YELLOW), "-", 1], [(ORANGE), "-", 1], [], []],
-    [[(ORANGE), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1], [(YELLOW), "-", 1], [(GREEN), "-", 1], [(DARKGREEN), "-", 1],
-     [(DARKRED), "-", 1], [(LIGHTBLACK), "-", 1], [(DARKRED), "-", 1],
-     [(DARKGREEN), "-", 1], [(GREEN), "-", 1], [(YELLOW), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1]],
-    [[(ORANGE), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1], [(YELLOW), "-", 1], [(GREEN), "-", 1], [(DARKGREEN), "-", 1],
-     [(DARKRED), "-", 1], [(LIGHTBLACK), "-", 1], [(DARKRED), "-", 1],
-     [(DARKGREEN), "-", 1], [(GREEN), "-", 1], [(YELLOW), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1]],
-    [[(ORANGE), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1], [(YELLOW), "-", 1], [(GREEN), "-", 1], [(DARKGREEN), "-", 1],
-     [(DARKRED), "-", 1], [(LIGHTBLACK), "-", 1], [(DARKRED), "-", 1],
-     [(DARKGREEN), "-", 1], [(GREEN), "-", 1], [(YELLOW), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1]],
-    [[(ORANGE), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1], [(YELLOW), "-", 1], [(GREEN), "-", 1], [(DARKGREEN), "-", 1],
-     [(DARKRED), "-", 1], [(LIGHTBLACK), "-", 1], [(DARKRED), "-", 1],
-     [(DARKGREEN), "-", 1], [(GREEN), "-", 1], [(YELLOW), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1]],
-    [[(ORANGE), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1], [(YELLOW), "-", 1], [(GREEN), "-", 1], [(DARKGREEN), "-", 1],
-     [(DARKRED), "-", 1], [(LIGHTBLACK), "-", 1], [(DARKRED), "-", 1],
-     [(DARKGREEN), "-", 1], [(GREEN), "-", 1], [(YELLOW), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1], [(ORANGE), "-", 1]]]
+    [[[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(YELLOW)], "-", 1], [[(GREEN)], "-", 1], [[(DARKGREEN)], "-", 1],
+     [[(DARKRED)], "-", 1], [[(LIGHTBLACK)], "-", 1], [[(DARKRED)], "-", 1],
+     [[(DARKGREEN)], "-", 1], [[(GREEN)], "-", 1], [[(YELLOW)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1]],
+    [[[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(YELLOW)], "-", 1], [[(GREEN)], "-", 1], [[(DARKGREEN)], "-", 1],
+     [[(DARKRED)], "-", 1], [[(LIGHTBLACK)], "-", 1], [[(DARKRED)], "-", 1],
+     [[(DARKGREEN)], "-", 1], [[(GREEN)], "-", 1], [[(YELLOW)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1]],
+    [[], [], [[(ORANGE)], "-", 1], [[(YELLOW)], "-", 1], [[(GREEN)], "-", 1], [[(DARKGREEN)], "-", 1], [[(DARKRED)], "-", 1],
+     [[(LIGHTBLACK)], "-", 1], [[(DARKRED)], "-", 1],
+     [[(DARKGREEN)], "-", 1], [[(GREEN)], "-", 1], [[(YELLOW)], "-", 1], [([(ORANGE)]), "-", 1], [], []],
+    [[[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(YELLOW)], "-", 1], [[(GREEN)], "-", 1], [[(DARKGREEN)], "-", 1],
+     [[(DARKRED)], "-", 1], [[(LIGHTBLACK)], "-", 1], [[(DARKRED)], "-", 1],
+     [[(DARKGREEN)], "-", 1], [[(GREEN)], "-", 1], [[(YELLOW)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1]],
+    [[[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(YELLOW)], "-", 1], [[(GREEN)], "-", 1], [[(DARKGREEN)], "-", 1],
+     [[(DARKRED)], "-", 1], [[(LIGHTBLACK)], "-", 1], [[(DARKRED)], "-", 1],
+     [[(DARKGREEN)], "-", 1], [[(GREEN)], "-", 1], [[(YELLOW)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1]],
+    [[[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(YELLOW)], "-", 1], [[(GREEN)], "-", 1], [[(DARKGREEN)], "-", 1],
+     [[(DARKRED)], "-", 1], [[(LIGHTBLACK)], "-", 1], [[(DARKRED)], "-", 1],
+     [[(DARKGREEN)], "-", 1], [[(GREEN)], "-", 1], [[(YELLOW)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1]],
+    [[[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(YELLOW)], "-", 1], [[(GREEN)], "-", 1], [[(DARKGREEN)], "-", 1],
+     [[(DARKRED)], "-", 1], [[(LIGHTBLACK)], "-", 1], [[(DARKRED)], "-", 1],
+     [[(DARKGREEN)], "-", 1], [[(GREEN)], "-", 1], [[(YELLOW)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1]],
+    [[[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(YELLOW)], "-", 1], [[(GREEN)], "-", 1], [[(DARKGREEN)], "-", 1],
+     [[(DARKRED)], "-", 1], [[(LIGHTBLACK)], "-", 1], [[(DARKRED)], "-", 1],
+     [[(DARKGREEN)], "-", 1], [[(GREEN)], "-", 1], [[(YELLOW)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1]]]
 
 ##########GROUNDS####################################
 # color,powerup,lives
@@ -119,11 +119,8 @@ flags = DOUBLEBUF
 screen = pygame.display.set_mode((960, 700))
 data_backGround = pygame.Surface(screen.get_size())
 data_paddleGround = pygame.Surface((960,21))
-#data_actionground = data_actionground.convert_alpha()
-"""
-data_foreGround = pygame.Surface(screen.get_size())
+data_foreGround = pygame.Surface(screen.get_size(),pygame.SRCALPHA,32)
 data_foreGround = data_foreGround.convert_alpha()
-"""
 data_buttonGround = pygame.Surface(screen.get_size(),pygame.SRCALPHA, 32)
 data_buttonGround = data_buttonGround.convert_alpha()
 data_textGround = pygame.Surface(screen.get_size(),pygame.SRCALPHA, 32)
@@ -199,10 +196,10 @@ def init():
                           [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]] , [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]] , [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]]
     global data_level1
     data_level1      =   [[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]],\
-                          [[],[],[(ORANGE),"-",1],[(YELLOW),"-",1],[(GREEN),"-",1],[(DARKGREEN),"-",1],[(DARKRED),"-",1],[(LIGHTBLACK),"-",1],[(DARKRED),"-",1],\
-                            [(DARKGREEN),"-",1],[(GREEN),"-",1],[(YELLOW),"-",1],[(ORANGE),"-",1],[],[]],\
-                          [[],[],[(ORANGE),"-",1],[(YELLOW),"-",1],[(GREEN),"-",1],[(DARKGREEN),"-",1],[(DARKRED),"-",1],[(LIGHTBLACK),"-",1],[(DARKRED),"-",1],\
-                            [(DARKGREEN),"-",1],[(GREEN),"-",1],[(YELLOW),"-",1],[(ORANGE),"-",1],[],[]]]
+                          [[],[],[[(ORANGE)],"-",1],[[(YELLOW)],"-",1],[[(GREEN)],"-",1],[[(DARKGREEN)],"-",1],[[(DARKRED)],"-",1],[[(LIGHTBLACK)],"-",1],[[(DARKRED)],"-",1],\
+                            [[(DARKGREEN)],"-",1],[[(GREEN)],"-",1],[[(YELLOW)],"-",1],[[(ORANGE)],"-",1],[],[]],\
+                          [[],[],[[(ORANGE)],"-",1],[[(YELLOW)],"-",1],[[(GREEN)],"-",1],[[(DARKGREEN)],"-",1],[[(DARKRED)],"-",1],[[(LIGHTBLACK)],"-",1],[[(DARKRED)],"-",1],\
+                            [[(DARKGREEN)],"-",1],[[(GREEN)],"-",1],[[(YELLOW)],"-",1],[[(ORANGE)],"-",1],[],[]]]
     #color,powerup,lives
     #[["white","-",1]]
     global screen

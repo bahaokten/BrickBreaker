@@ -5,7 +5,6 @@ from pygame.locals import *
 
 import main_Vars
 import main_Draw
-#refactor test tag
 
 """
 def drawMenu():
@@ -27,10 +26,6 @@ def drawMenu():
     main_Vars.data_allSprites.update()
     main_Vars.data_allSprites.draw(main_Vars.data_actionground)
 """
-
-
-
-
 
 ###############MAIN FUNCTION###############
 
@@ -94,10 +89,10 @@ def main():
 
         main_Vars.screen.blit(main_Vars.data_backGround, (0, 0))
         main_Vars.screen.blit(main_Vars.data_paddleGround, (0, main_Vars.data_paddleY))
+        main_Vars.screen.blit(main_Vars.data_foreGround, (0, 0))
         main_Vars.screen.blit(main_Vars.data_buttonGround, (0, 0))
         main_Vars.screen.blit(main_Vars.data_textGround, (0, 0))
         """
-        #main_Vars.screen.blit(main_Vars.data_foreground, (0, 0))
         main_Vars.screen.blit(main_Vars.data_buttonground, (0, 0))
         main_Vars.screen.blit(main_Vars.data_textground, (0, 0))
         """

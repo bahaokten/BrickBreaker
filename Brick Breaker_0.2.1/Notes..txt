@@ -21,7 +21,8 @@ buttonground
 -sprite_Button as well as menuLevelSelect are drawn onto this layer
 
 foreground
---empty--
+-bricks are here
+-Size: not determined but above paddle
 
 
 

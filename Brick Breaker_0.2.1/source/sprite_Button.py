@@ -78,12 +78,12 @@ class Button(pygame.sprite.Sprite):
             # if "" is entered it means all sprites will be deleted whatsoever
             main_Vars.data_spriteGroup_buttons.remove(self)
             main_Vars.data_buttonground.fill((0, 0, 0, 0), (self.X, self.Y, self.W, self.H))
-            updateButtons(main_Vars.data_buttonground)
+            updateButtons()
 
 
-def updateButtons(ground):
+def updateButtons():
     main_Vars.data_buttonground.fill((0, 0, 0, 0))
-    main_Vars.data_spriteGroup_buttons.draw(ground)
+    main_Vars.data_spriteGroup_buttons.draw(main_Vars.data_buttonGround)
 
 
 def buttonCreator(X, Y, W, H, R1, G1, B1, R2, G2, B2, newState, text, font, R3, G3, B3, depth=10, mid=False, bold=False,
@@ -93,7 +93,7 @@ def buttonCreator(X, Y, W, H, R1, G1, B1, R2, G2, B2, newState, text, font, R3, 
     main_Vars.data_spriteGroup_buttons.add(button)  # ,something)
 
 
-def spawnCreatedButtons(ground):
+def spawnCreatedButtons():
     for i in xrange(len(main_Vars.data_spriteGroup_buttons.sprites())):
         main_Vars.data_spriteGroup_buttons.sprites()[i].create()
-    main_Vars.data_spriteGroup_buttons.draw(ground)
+    main_Vars.data_spriteGroup_buttons.draw(main_Vars.data_buttonGround)

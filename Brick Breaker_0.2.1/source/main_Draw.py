@@ -9,16 +9,11 @@ import sprite_Brick
 import sprite_Button
 
 
-######################3RAW CREATE FUNCTIONS##############################################33
+######################RAW CREATE FUNCTIONS##############################################33
 # PADDLE AND BUTTON CREATE CALLS ARE WITHIN THE MODULE FILES
 
 def createLevel(level):
-    rows = len(level)
-    cols = len(level[0])
-    for row in xrange(rows):
-        for col in xrange(cols):
-            sprite_Brick.createBrick(col, row, level[row][col][0], level[row][col][1], level[row][col][2])
-
+    sprite_Brick.createLevelBricks(level)
 
 #####################RAW DRAW FUNCTIONS###############################################################
 
@@ -31,13 +26,13 @@ def drawMenu():
     sprite_Button.buttonCreator(480, 350, 100, 50, 105, 250, 250, 50, 150, 150, "Menu", "START",
                                 main_Vars.data_fontFile1, 100,
                                 50, 50, mid=True, Ycor=4)
-    sprite_Button.spawnCreatedButtons(main_Vars.data_buttonGround)
+    sprite_Button.spawnCreatedButtons()
     main_Modules.normTextDraw(main_Vars.data_fontFile1, main_Vars.data_canvasX / 2, 50, 12, "Brick Breaker", 0, 0, 0,
                               bold=False,
                               italic=False)
     main_Vars.data_tick1 = True
-    # drawLevel(main_Vars.data_level1,main_Vars.data_background)
-    print("done!")
+    createLevel(main_Vars.data_level1)
+    print("list of sprites", main_Vars.data_allSprites.sprites())
     main_Vars.data_allSprites.update()
     # main_Vars.data_allSprites.draw(main_Vars.data_paddleground)
 
@@ -101,7 +96,6 @@ def drawBrick(col, row, cl, width, height, marginY, addX, addY, outline):
     if col >= 15 or row >= 26:
         return False
     else:
-        pygame.draw.rect(main_Vars.data_buttonGround, cl, (addX + col * width, addY + marginY + row * height, width, height))
+        pygame.draw.rect(main_Vars.data_buttonGround, cl[0], (addX + col * width, addY + marginY + row * height, width, height))
         pygame.draw.rect(main_Vars.data_buttonGround, main_Vars.BLACK, (addX + col * width, addY + marginY + row * height, width, height),
                          outline)
-        print(main_Vars.data_buttonGround.get_size())
