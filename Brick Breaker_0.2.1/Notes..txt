@@ -1,0 +1,33 @@
+######################################################################################################
+list of grounds and what they do:
+
+paddleground:
+-only for paddle
+-Size:960x21
+-Has a color key of (1,2,3),RLEACCEL) and is NOT alpha converted
+-ONLY sprite_Paddle is drawn onto this ground
+
+background:
+-supposedly updated with global variable tick1
+-Size:Full Screen
+
+textground:
+-texts go here
+-Size:Full Screen
+
+buttonground
+-updated whenever a mouse related event is activated
+-Size:Full Screen
+-sprite_Button as well as menuLevelSelect are drawn onto this layer
+
+foreground
+--empty--
+
+
+
+########################################################################################################
+
+remaining sprites to complete:
+brick
+ball(collision mechanics? Elastic collision? Simple collision or collision with angular momentum?)
+Angular momentum olmazsa ball belli patternde loopa girebilir.
