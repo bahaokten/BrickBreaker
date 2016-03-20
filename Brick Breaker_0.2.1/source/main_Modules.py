@@ -7,7 +7,7 @@ import main_Vars
 
 # --FitTextDraw Module--#
 
-def fitTextDraw(font, limW, limH, text, X1, Y1, R, G, B, Ycorrection=0, Xcorrection=0, bold=False, italic=False,
+def fitTextDraw(font, limW, limH, text, X1, Y1, color, Ycorrection=0, Xcorrection=0, bold=False, italic=False,
                 prev=False):
     if not prev:
         tmp = 100
@@ -15,12 +15,12 @@ def fitTextDraw(font, limW, limH, text, X1, Y1, R, G, B, Ycorrection=0, Xcorrect
         while main_Vars.data_textSize[0] > limW or main_Vars.data_textSize[1] > limH:
             createText(font, tmp, text=text, bold=bold, italic=italic)
             tmp -= 1
-    drawText(X1 + (limW - main_Vars.data_textSize[0]) / 2, Y1 + (limH - main_Vars.data_textSize[1]) / 2, text, R, G, B,
+    drawText(X1 + (limW - main_Vars.data_textSize[0]) / 2, Y1 + (limH - main_Vars.data_textSize[1]) / 2, text, (color),
              ycor=Ycorrection, xcor=Xcorrection)
 
 
-def drawText(x, y, text, R, G, B, ycor=0, xcor=0):
-    txt = main_Vars.data_font.render(text, 10, (R, G, B))
+def drawText(x, y, text, color, ycor=0, xcor=0):
+    txt = main_Vars.data_font.render(text, 10, color)
     main_Vars.data_textGround.blit(txt, (x + xcor, y + ycor))
 
 
@@ -30,10 +30,17 @@ def createText(f, size, text="", bold=False, italic=False):
     main_Vars.data_textSize = tmp
 
 
-def normTextDraw(font, x, y, size, text, R, G, B, bold=False, italic=False, create=False):
-    if create:
+def normTextDraw(font, x, y, text, color, bold=False, size = False,italic=False,mid=True):
+    #if size is not changed there is no point in changing bold and italic variables since the function wont create a new font for the text
+    if size:
         createText(font, size, text=text, bold=bold, italic=italic)
-    drawText(x, y, text, R, G, B)
+    if mid and size:
+        drawText(x-main_Vars.data_textSize[0]/2, y, text, color)
+    elif mid and not size:
+        tmp = pygame.font.Font.size(main_Vars.data_font, text)
+        drawText(x-tmp[0]/2,y,text,color)
+    else:
+        drawText(x,y,text,color)
 
 
 # Collision Detection
@@ -45,6 +52,7 @@ def mouseCollision(X1, Y1, W, H):
         else:
             return False
 
+# Object Middle
 
 def objMid(X1, Y1, W, H):
     return X1 - (W / 2), Y1 - (H / 2)

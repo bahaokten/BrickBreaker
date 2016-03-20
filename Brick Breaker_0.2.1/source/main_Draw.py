@@ -3,38 +3,11 @@ from __future__ import print_function, division
 import pygame
 
 import main_Vars
-import main_Modules
-import sprite_Paddle
-import sprite_Brick
-import sprite_Button
 
 
-######################RAW CREATE FUNCTIONS##############################################33
-# PADDLE AND BUTTON CREATE CALLS ARE WITHIN THE MODULE FILES
 
-def createLevel(level):
-    sprite_Brick.createLevelBricks(level)
 
 #####################RAW DRAW FUNCTIONS###############################################################
-
-
-def drawMenu():
-    drawLevelSelect(main_Vars.data_level1)
-    drawMenuBackground()
-    sprite_Paddle.paddleCreator()
-    # self, X, Y, W, H, R1, G1, B1, R2, G2, B2, newState, text, font, R3, G3, B3, depth = 10, middle = True, bold= False, italic = False, usePrevFont = False)
-    sprite_Button.buttonCreator(480, 350, 100, 50, 105, 250, 250, 50, 150, 150, "Menu", "START",
-                                main_Vars.data_fontFile1, 100,
-                                50, 50, mid=True, Ycor=4)
-    sprite_Button.spawnCreatedButtons()
-    main_Modules.normTextDraw(main_Vars.data_fontFile1, main_Vars.data_canvasX / 2, 50, 12, "Brick Breaker", 0, 0, 0,
-                              bold=False,
-                              italic=False)
-    main_Vars.data_tick1 = True
-    createLevel(main_Vars.data_level1)
-    print("list of sprites", main_Vars.data_allSprites.sprites())
-    main_Vars.data_allSprites.update()
-    # main_Vars.data_allSprites.draw(main_Vars.data_paddleground)
 
 
 def drawMenuBackground():
@@ -58,8 +31,24 @@ def drawMenuBackground():
             curtainColor[0] -= 5 + (num)
         curtainColor[1] += 20 - (num)
         curtainColor[2] += abs(num - 5)
+    main_Vars.data_rect.append((0,0,main_Vars.data_canvasX,main_Vars.data_canvasY))
     main_Vars.screen.blit(main_Vars.data_backGround, (0, 0))
 
+def drawMenuBackGround2():
+    curtainColor = [250,250,0]
+    for num in xrange(19):
+        pygame.draw.polygon(main_Vars.data_backGround, curtainColor,
+                            (((num * 8), main_Vars.data_canvasY), (10 + (num * 8), main_Vars.data_canvasY), (0, main_Vars.data_canvasY/2)))
+        pygame.draw.polygon(main_Vars.data_backGround, curtainColor, (
+            (main_Vars.data_canvasX - (num * 8), main_Vars.data_canvasY),
+            (main_Vars.data_canvasX - 10 - (num * 8), main_Vars.data_canvasY), (main_Vars.data_canvasX, main_Vars.data_canvasY/2)))
+        pygame.draw.polygon(main_Vars.data_backGround, curtainColor, (
+            (main_Vars.data_canvasX - (num * 8), 0), (main_Vars.data_canvasX, main_Vars.data_canvasY/2),
+            (main_Vars.data_canvasX - 10 - (num * 8), 0)))
+        pygame.draw.polygon(main_Vars.data_backGround, curtainColor, (((num * 8), 0), (10 + (num * 8), 0), (0, main_Vars.data_canvasY/2)))
+        curtainColor[0]= curtainColor[1]*0.9
+        curtainColor[2]= curtainColor[1]*0.1
+        curtainColor[1]-= 10
 
 # DRAW MENU LEVEL SELECT MODULE
 
@@ -72,6 +61,7 @@ def drawLevelSelect(level):
     drawLevel(level, main_Vars.data_buttonGround, 13, 5, False, tmp, tmp, 1)
     pygame.draw.rect(main_Vars.data_buttonGround, main_Vars.BLACK, (tmp, tmp, 13 * 15, 5 * 26), 3)
     # drawLevel(main_Vars.data_level1,main_Vars.data_buttonground,64,25)
+
 
 def drawLevel(level, ground, width=0, height=0, marginY=True, addX=0, addY=0, outline=5):
     if width == 0:
@@ -89,6 +79,7 @@ def drawLevel(level, ground, width=0, height=0, marginY=True, addX=0, addY=0, ou
             if len(level[row][col]) != 0:
                 drawBrick(col, row, level[row][col][0], width, height, marginY, addX, addY, outline)
 
+
 def drawBrick(col, row, cl, width, height, marginY, addX, addY, outline):
     # Col(x) max = 0-14
     # Row(y) max = 0-25
@@ -96,6 +87,8 @@ def drawBrick(col, row, cl, width, height, marginY, addX, addY, outline):
     if col >= 15 or row >= 26:
         return False
     else:
-        pygame.draw.rect(main_Vars.data_buttonGround, cl[0], (addX + col * width, addY + marginY + row * height, width, height))
-        pygame.draw.rect(main_Vars.data_buttonGround, main_Vars.BLACK, (addX + col * width, addY + marginY + row * height, width, height),
+        pygame.draw.rect(main_Vars.data_buttonGround, cl[0],
+                         (addX + col * width, addY + marginY + row * height, width, height))
+        pygame.draw.rect(main_Vars.data_buttonGround, main_Vars.BLACK,
+                         (addX + col * width, addY + marginY + row * height, width, height),
                          outline)

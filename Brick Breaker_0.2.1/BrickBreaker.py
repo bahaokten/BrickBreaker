@@ -4,6 +4,7 @@ import pygame
 from pygame.locals import *
 
 import main_Vars
+import main_Handler
 import main_Draw
 
 
@@ -33,9 +34,10 @@ def drawMenu():
 def doGame():
     if not main_Vars.data_tick1:
         if main_Vars.data_state == "menu":
-            main_Draw.drawMenu()
-        else:
-            main_Vars.data_background.fill((100, 255, 255))
+            main_Handler.drawMenu()
+        elif main_Vars.data_state == "levelmenu1":
+            main_Handler.drawLevelMenu(1)
+        main_Vars.data_tick1 = True
     main_Vars.data_spriteGroup_paddle.update()
 
 
@@ -89,15 +91,21 @@ def main():
 
 
         main_Vars.screen.blit(main_Vars.data_backGround, (0, 0))
-        main_Vars.screen.blit(main_Vars.data_paddleGround, (0, main_Vars.data_paddleY))
-        main_Vars.screen.blit(main_Vars.data_foreGround, (0, 0))
+        if main_Vars.data_state == "play":
+            main_Vars.screen.blit(main_Vars.data_paddleGround, (0, main_Vars.data_paddleY))
+            main_Vars.screen.blit(main_Vars.data_foreGround, (0, 0))
         main_Vars.screen.blit(main_Vars.data_buttonGround, (0, 0))
         main_Vars.screen.blit(main_Vars.data_textGround, (0, 0))
         """
         main_Vars.screen.blit(main_Vars.data_buttonground, (0, 0))
         main_Vars.screen.blit(main_Vars.data_textground, (0, 0))
         """
-        pygame.display.update(main_Vars.data_rect)
+        if not main_Vars.data_updateAll:
+            pygame.display.update(main_Vars.data_rect)
+        else:
+            pygame.display.update()
+            main_Vars.data_updateAll = False
+            print ("hey")
         main_Vars.data_rect = []
         #pygame.display.update()
 

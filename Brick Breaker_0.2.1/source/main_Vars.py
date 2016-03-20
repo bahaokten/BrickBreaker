@@ -20,9 +20,11 @@ CHROME = (227,222,219)
 ROSE = (255, 0, 127)
 EMERALD = (80,200,120)
 
+data_updateAll = False
 data_state = "menu"
 data_canvasX = 960
 data_canvasY = 700
+#Used by button module
 data_tmp = ()
 #rects needed to be drawn
 data_rect = [(0,0,data_canvasX,data_canvasY)]
@@ -42,8 +44,8 @@ data_spriteGroup_bricks = pygame.sprite.Group()
 
 # ---FONTS&TEXTS---#
 data_textSize = 0
-# data_fontFile1 = "Resources/Mona Shark.otf"
 data_fontFile1 = "Resources/Font_1.ttf"
+data_fontFile2 = "Resources/Mona Shark.otf"
 
 
 # ---BRICKS---#
@@ -58,6 +60,7 @@ data_paddleY = 300
 
 
 ################################################### ---INPUT---####################################3
+
 data_left = False
 data_right = False
 
@@ -129,96 +132,3 @@ data_backGround = data_backGround.convert()
 data_mousePressedPos = ()
 data_paddleGround.set_colorkey((1,2,3),RLEACCEL)
 
-"""
-def init():
-    global data_state
-    data_state = "menu"
-    #---GENERAL---#
-    global data_canvasX
-    data_canvasX = 960
-    global data_canvasY
-    data_canvasY = 700
-    global data_tmp
-    data_tmp = ()
-    global data_tick1
-    data_tick1 = False
-    data_textSize = 0
-
-    ####SPRITES####
-
-    #--BUTTON--#
-    global data_spriteGroup_buttons
-    data_spriteGroup_buttons = pygame.sprite.Group()
-    #---PADDLE---#
-    global data_paddle
-    data_paddle = ()
-
-    #---FONTS&TEXTS---#
-    global data_textSize
-    data_textSize = 0
-    global data_fontFile1
-    #data_fontFile1 = "Resources/Mona Shark.otf"
-    data_fontFile1 = "Resources/Font_1.ttf"
-    #---BRICKS---#
-    global data_brickSizeX
-    data_brickSizeX = 64
-    global data_brickSizeY
-    data_brickSizeY = 3
-    global data_brickSizeXSelect
-    data_brickSizeXSelect = 13
-    global data_brickSizeYSelect
-    data_brickSizeYSelect = 5
-    global data_brickYMargin
-    data_brickYMargin = 10
-    #---Sprites---#
-    global data_allSprites
-    data_allSprites = pygame.sprite.Group()
-    #Paddle#
-    #global data_paddle
-    data_paddle = ()
-    global data_paddleY
-    data_paddleY = 300
-    #---INPUT---#
-    global data_left
-    data_left = False
-    global data_right
-    data_right = False
-    #---LEVEL---#
-    global data_currentLevel
-    data_currentLevel = []
-    global data_lvlLayout
-    data_lvlLayout   =   [[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]], [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]] , [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]],\
-                          [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]] , [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]] , [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]],\
-                          [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]] , [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]] , [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]],\
-                          [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]] , [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]] , [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]],\
-                          [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]] , [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]] , [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]],\
-                          [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]] , [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]] , [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]],\
-                          [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]] , [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]] , [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]]
-    global data_level1
-    data_level1      =   [[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]],\
-                          [[],[],[[(ORANGE)],"-",1],[[(YELLOW)],"-",1],[[(GREEN)],"-",1],[[(DARKGREEN)],"-",1],[[(DARKRED)],"-",1],[[(LIGHTBLACK)],"-",1],[[(DARKRED)],"-",1],\
-                            [[(DARKGREEN)],"-",1],[[(GREEN)],"-",1],[[(YELLOW)],"-",1],[[(ORANGE)],"-",1],[],[]],\
-                          [[],[],[[(ORANGE)],"-",1],[[(YELLOW)],"-",1],[[(GREEN)],"-",1],[[(DARKGREEN)],"-",1],[[(DARKRED)],"-",1],[[(LIGHTBLACK)],"-",1],[[(DARKRED)],"-",1],\
-                            [[(DARKGREEN)],"-",1],[[(GREEN)],"-",1],[[(YELLOW)],"-",1],[[(ORANGE)],"-",1],[],[]]]
-    #color,powerup,lives
-    #[["white","-",1]]
-    global screen
-    screen=pygame.display.set_mode((960,700))
-    global data_background
-    data_background = pygame.Surface(screen.get_size())
-    global data_actionground
-    data_actionground = pygame.Surface(screen.get_size(),pygame.SRCALPHA,32)
-    data_actionground = data_actionground.convert_alpha()
-    global data_foreground
-    data_foreground = pygame.Surface(screen.get_size(),pygame.SRCALPHA,32)
-    data_foreground = data_foreground.convert_alpha()
-    global data_buttonground
-    data_buttonground = pygame.Surface(screen.get_size(),pygame.SRCALPHA,32)
-    data_buttonground = data_buttonground.convert_alpha()
-    global data_textground
-    data_textground = pygame.Surface(screen.get_size(),pygame.SRCALPHA,32)
-    data_textground = data_textground.convert_alpha()
-    data_background = data_background.convert()
-    global data_mousePressedPos
-    data_mousePressedPos = ()
-"""
