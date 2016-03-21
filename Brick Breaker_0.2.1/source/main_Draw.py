@@ -3,14 +3,14 @@ from __future__ import print_function, division
 import pygame
 
 import main_Vars
-
-
+import sprite_Button
+from math import pi
 
 
 #####################RAW DRAW FUNCTIONS###############################################################
 
 
-def drawMenuBackground():
+def drawMenuBackGround():
     backColor = [154, 52, 53]
     curtainColor = [250, 0, 0]
     for n in xrange(18):
@@ -31,39 +31,127 @@ def drawMenuBackground():
             curtainColor[0] -= 5 + (num)
         curtainColor[1] += 20 - (num)
         curtainColor[2] += abs(num - 5)
-    main_Vars.data_rect.append((0,0,main_Vars.data_canvasX,main_Vars.data_canvasY))
+    main_Vars.data_rect.append((0, 0, main_Vars.data_canvasX, main_Vars.data_canvasY))
     main_Vars.screen.blit(main_Vars.data_backGround, (0, 0))
 
+
 def drawMenuBackGround2():
-    curtainColor = [250,250,0]
+    main_Vars.data_backGround.fill(main_Vars.GOLD)
+    curtainColor = [250, 250, 0]
     for num in xrange(19):
         pygame.draw.polygon(main_Vars.data_backGround, curtainColor,
-                            (((num * 8), main_Vars.data_canvasY), (10 + (num * 8), main_Vars.data_canvasY), (0, main_Vars.data_canvasY/2)))
+                            (((num * 8), main_Vars.data_canvasY), (10 + (num * 8), main_Vars.data_canvasY),
+                             (0, main_Vars.data_canvasY / 2)))
         pygame.draw.polygon(main_Vars.data_backGround, curtainColor, (
             (main_Vars.data_canvasX - (num * 8), main_Vars.data_canvasY),
-            (main_Vars.data_canvasX - 10 - (num * 8), main_Vars.data_canvasY), (main_Vars.data_canvasX, main_Vars.data_canvasY/2)))
+            (main_Vars.data_canvasX - 10 - (num * 8), main_Vars.data_canvasY),
+            (main_Vars.data_canvasX, main_Vars.data_canvasY / 2)))
         pygame.draw.polygon(main_Vars.data_backGround, curtainColor, (
-            (main_Vars.data_canvasX - (num * 8), 0), (main_Vars.data_canvasX, main_Vars.data_canvasY/2),
+            (main_Vars.data_canvasX - (num * 8), 0), (main_Vars.data_canvasX, main_Vars.data_canvasY / 2),
             (main_Vars.data_canvasX - 10 - (num * 8), 0)))
-        pygame.draw.polygon(main_Vars.data_backGround, curtainColor, (((num * 8), 0), (10 + (num * 8), 0), (0, main_Vars.data_canvasY/2)))
-        curtainColor[0]= curtainColor[1]*0.9
-        curtainColor[2]= curtainColor[1]*0.1
-        curtainColor[1]-= 10
+        pygame.draw.polygon(main_Vars.data_backGround, curtainColor,
+                            (((num * 8), 0), (10 + (num * 8), 0), (0, main_Vars.data_canvasY / 2)))
+        curtainColor[0] = curtainColor[1] * 0.9
+        curtainColor[2] = curtainColor[1] * 0.1
+        curtainColor[1] -= 10
 
-# DRAW MENU LEVEL SELECT MODULE
+        # DRAW MENU LEVEL SELECT MODULE
+        """
+# self, X, Y, W, H, col1, col2, newState, text, font, col3, depth = 10, middle = True, bold= False, italic = False, usePrevFont = False)
+    sprite_Button.buttonCreator(480, 350, 100, 50, (105, 250, 250),( 50, 150, 150), "levelmenu1", "START",
+                                main_Vars.data_fontFile1, (100, 50, 50), mid=True, Ycor=4)
+    sprite_Button.spawnCreatedButtons()
+    """
 
 
-def drawLevelSelect(level):
-    # pygame.draw.rect(main_Vars.data_buttonground, LIGHTGRAY , (0,0,main_Vars.data_canvasX,main_Vars.data_canvasY),0)
-    # canvas.create_text(canvas.main_Vars.data.canvasWidth/2,50,text = "Level Select",font = "Times 30",anchor = CENTER, fill = "red")
-    tmp = 50
-    pygame.draw.rect(main_Vars.data_buttonGround, (90, 116, 149), (tmp, tmp, 13 * 15, 5 * 26))
-    drawLevel(level, main_Vars.data_buttonGround, 13, 5, False, tmp, tmp, 1)
-    pygame.draw.rect(main_Vars.data_buttonGround, main_Vars.BLACK, (tmp, tmp, 13 * 15, 5 * 26), 3)
+def drawLevelSelectMenu(level1, level2=0, level3=0, level4=0, level5=0, level6=0):
+    distance = 70
+    midY = main_Vars.data_canvasY / 2
+    midX = main_Vars.data_canvasX / 2
+    # level1
+    if main_Vars.isLevelHandler(level1):
+        drawLevelSelect(level1, 150, midY - 130 - distance)
+        tmp = main_Vars.levelStateHandler(level1)  # gets the new state button will issue
+        sprite_Button.buttonCreator(150 + 195 / 2, midY - 30, 100, 50, (105, 250, 250), (50, 150, 150), tmp, "PLAY",
+                                    main_Vars.data_fontFile1, (100, 50, 50), mid=True, Ycor=4,
+                                    usePrevFont=True)
+    else:
+        drawLockedLevel(150, midY - 130 - distance)
+    if level2:
+        if main_Vars.isLevelHandler(level2):
+            drawLevelSelect(level2, midX - 195 / 2, midY - 130 - distance)
+            tmp = main_Vars.levelStateHandler(level2)
+            sprite_Button.buttonCreator(midX, midY - 30, 100, 50, (105, 250, 250), (50, 150, 150), tmp, "PLAY",
+                                        main_Vars.data_fontFile1, (100, 50, 50), mid=True, Ycor=4,
+                                        usePrevFont=True)
+        else:
+            drawLockedLevel(midX - 195 / 2, midY - 130 - distance)
+
+    if level3:
+        if main_Vars.isLevelHandler(level3):
+            drawLevelSelect(level3, 615, midY - 130 - distance)
+            tmp = main_Vars.levelStateHandler(level3)
+            sprite_Button.buttonCreator(615 + 195 / 2, midY - 30, 100, 50, (105, 250, 250), (50, 150, 150), tmp, "PLAY",
+                                        main_Vars.data_fontFile1, (100, 50, 50), mid=True, Ycor=4,
+                                        usePrevFont=True)
+        else:
+            drawLockedLevel(615, midY - 130 - distance)
+    if level4:
+        if main_Vars.isLevelHandler(level4):
+            drawLevelSelect(level4, 150, midY + distance)
+            tmp = main_Vars.levelStateHandler(level4)
+            sprite_Button.buttonCreator(150 + 195 / 2, midY + 130 + distance + 15 + 25, 100, 50, (105, 250, 250),
+                                        (50, 150, 150), tmp, "PLAY",
+                                        main_Vars.data_fontFile1, (100, 50, 50), mid=True, Ycor=4,
+                                        usePrevFont=True)
+        else:
+            drawLockedLevel(150, midY + distance)
+    if level5:
+        if main_Vars.isLevelHandler(level5):
+            drawLevelSelect(level5, midX - 195 / 2, midY + distance)
+            tmp = main_Vars.levelStateHandler(level5)
+            sprite_Button.buttonCreator(midX, midY + 130 + distance + 15 + 25, 100, 50, (105, 250, 250), (50, 150, 150),
+                                        tmp, "PLAY",
+                                        main_Vars.data_fontFile1, (100, 50, 50), mid=True, Ycor=4,
+                                        usePrevFont=True)
+        else:
+            drawLockedLevel(midX - 195 / 2, midY + distance)
+    if level6:
+        if main_Vars.isLevelHandler(level6):
+            drawLevelSelect(level6, 615, midY + distance)
+            tmp = main_Vars.levelStateHandler(level6)
+            sprite_Button.buttonCreator(615 + 195 / 2, midY + 130 + distance + 15 + 25, 100, 50, (105, 250, 250),
+                                        (50, 150, 150), tmp, "PLAY",
+                                        main_Vars.data_fontFile1, (100, 50, 50), mid=True, Ycor=4,
+                                        usePrevFont=True)
+        else:
+            drawLockedLevel(615, midY + distance)
+    sprite_Button.spawnCreatedButtons()
+
+
+def drawLevelSelect(level, x, y):
+    # width = 195 height = 130
+    pygame.draw.rect(main_Vars.data_buttonGround, (90, 116, 149), (x, y, 13 * 15, 5 * 26))
+    drawLevel(level, 13, 5, False, x, y, 1)
+    pygame.draw.rect(main_Vars.data_buttonGround, main_Vars.BLACK, (x, y, 13 * 15, 5 * 26), 3)
     # drawLevel(main_Vars.data_level1,main_Vars.data_buttonground,64,25)
 
 
-def drawLevel(level, ground, width=0, height=0, marginY=True, addX=0, addY=0, outline=5):
+def drawLockedLevel(x, y):
+    pygame.draw.rect(main_Vars.data_buttonGround, main_Vars.GRAY, (x, y, 13 * 15, 5 * 26))
+    for i in xrange(26):
+        pygame.draw.line(main_Vars.data_buttonGround, main_Vars.BLACK, (x, y + i * 5 + 2), (x + 195, y + i * 5 + 2), 2)
+    pygame.draw.rect(main_Vars.data_buttonGround, main_Vars.BLACK, (x, y, 13 * 15, 5 * 26), 3)
+    pygame.draw.arc(main_Vars.data_buttonGround, main_Vars.SILVER, (x + 125 / 2, y + 15, 70, 90), pi, 0, 7)
+    pygame.draw.rect(main_Vars.data_buttonGround, main_Vars.GOLD, (x + 125 / 2 - 5, y + 60, 80, 52))
+    pygame.draw.ellipse(main_Vars.data_buttonGround, main_Vars.LIGHTBLACK, (x + 125 / 2 + 27, y + 75, 16, 16))
+    pygame.draw.rect(main_Vars.data_buttonGround, main_Vars.LIGHTBLACK, (x + 125 / 2 + 31, y + 82, 8, 20))
+    # 70 BY 90 LOCK
+
+
+def drawLevel(level, width=0, height=0, marginY=True, addX=0, addY=0, outline=5):
+    print("drawLevelCalled", level, addX, addY)
+    lvl = main_Vars.levelHandler(level)  # gets the level
     if width == 0:
         width = main_Vars.data_brickSizeX
     if height == 0:
@@ -72,12 +160,12 @@ def drawLevel(level, ground, width=0, height=0, marginY=True, addX=0, addY=0, ou
         marginY = main_Vars.data_brickYMargin
     else:
         marginY = 0
-    rows = len(level)
-    cols = len(level[0])
+    rows = len(lvl)
+    cols = len(lvl[0])
     for row in xrange(rows):
         for col in xrange(cols):
-            if len(level[row][col]) != 0:
-                drawBrick(col, row, level[row][col][0], width, height, marginY, addX, addY, outline)
+            if len(lvl[row][col]) != 0:
+                drawBrick(col, row, lvl[row][col][0], width, height, marginY, addX, addY, outline)
 
 
 def drawBrick(col, row, cl, width, height, marginY, addX, addY, outline):

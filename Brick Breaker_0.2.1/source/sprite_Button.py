@@ -8,7 +8,7 @@ class Button(pygame.sprite.Sprite):
     # Constructor. Pass in the color of the block,
     # and its x and y position
     def __init__(self, X, Y, W, H, color1, color2, newState, text, font, color3, depth=10, middle=False,
-                 bold=False, italic=False, usePrevFont=False, Ycor=0,oneUse = True):
+                 bold=False, italic=False, usePrevFont=False, Ycor=0, oneUse=True):
         self.X = X
         self.Y = Y
         self.W = W
@@ -21,7 +21,7 @@ class Button(pygame.sprite.Sprite):
         self.prev = usePrevFont
         self.font = font
         self.Ycor = Ycor
-        #if oneUse is not true, button wont be destroyed after pressed. To destroy it, spritegroup must be called to kill.(to kill all text = "")
+        # if oneUse is not true, button wont be destroyed after pressed. To destroy it, spritegroup must be called to kill.(to kill all text = "")
         self.oneUse = oneUse
         # NEW GAME STATE ISSUED
         self.newState = newState
@@ -39,7 +39,7 @@ class Button(pygame.sprite.Sprite):
 
     def update(self, state):
         if main_Modules.mouseCollision(self.X, self.Y, self.W, self.H):
-            main_Vars.data_rect.append((self.rect[0],self.rect[1],self.W,self.H))
+            main_Vars.data_rect.append((self.rect[0], self.rect[1], self.W, self.H))
             # self.image.fill((0,0,0,0))
             if state == "d":
                 self.selfState = "d"
@@ -49,7 +49,7 @@ class Button(pygame.sprite.Sprite):
                 main_Vars.data_buttonGround.blit(self.image, (self.X, self.Y))
 
         elif state == "u" and self.selfState == "d":
-            main_Vars.data_rect.append((self.rect[0],self.rect[1],self.W,self.H))
+            main_Vars.data_rect.append((self.rect[0], self.rect[1], self.W, self.H))
             self.selfState = "u"
             pygame.draw.rect(self.image, self.color1, (0, 0, self.W, self.H))
             pygame.draw.rect(self.image, (self.color2[0] * 0.3, self.color2[1] * 0.3, self.color2[2] * 0.3),
@@ -72,8 +72,8 @@ class Button(pygame.sprite.Sprite):
 
     def buttonTextCreate(self):
         self.draw = main_Modules.fitTextDraw(self.font, self.W - 2 * self.depth, self.H - 2 * self.depth, self.text,
-                                            self.X + self.depth, self.Y + self.depth, self.color3,
-                                            bold=self.bold, italic=self.italic, prev=self.prev, Ycorrection=self.Ycor)
+                                             self.X + self.depth, self.Y + self.depth, self.color3,
+                                             bold=self.bold, italic=self.italic, prev=self.prev, Ycorrection=self.Ycor)
 
     def kill(self, text):
         if text == self.text or text == "":
@@ -89,7 +89,7 @@ def updateButtons():
     main_Vars.data_spriteGroup_buttons.draw(main_Vars.data_buttonGround)
 
 
-def buttonCreator(X, Y, W, H, color1,color2, newState, text, font, color3, depth=10, mid=False, bold=False,
+def buttonCreator(X, Y, W, H, color1, color2, newState, text, font, color3, depth=10, mid=False, bold=False,
                   italic=False, usePrevFont=False, Ycor=0):
     button = Button(X, Y, W, H, color1, color2, newState, text, font, color3, depth=depth, middle=mid,
                     bold=bold, italic=italic, usePrevFont=usePrevFont, Ycor=Ycor)

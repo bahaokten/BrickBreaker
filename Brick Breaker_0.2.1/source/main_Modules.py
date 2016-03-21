@@ -15,6 +15,9 @@ def fitTextDraw(font, limW, limH, text, X1, Y1, color, Ycorrection=0, Xcorrectio
         while main_Vars.data_textSize[0] > limW or main_Vars.data_textSize[1] > limH:
             createText(font, tmp, text=text, bold=bold, italic=italic)
             tmp -= 1
+    else:
+        tmp = pygame.font.Font.size(main_Vars.data_font, text)
+        main_Vars.data_textSize = tmp
     drawText(X1 + (limW - main_Vars.data_textSize[0]) / 2, Y1 + (limH - main_Vars.data_textSize[1]) / 2, text, (color),
              ycor=Ycorrection, xcor=Xcorrection)
 
@@ -32,9 +35,11 @@ def createText(f, size, text="", bold=False, italic=False):
 
 def normTextDraw(font, x, y, text, color, bold=False, size = False,italic=False,mid=True):
     #if size is not changed there is no point in changing bold and italic variables since the function wont create a new font for the text
-    if size:
+    if size and not mid:
         createText(font, size, text=text, bold=bold, italic=italic)
+        drawText(x, y, text, color)
     if mid and size:
+        createText(font, size, text=text, bold=bold, italic=italic)
         drawText(x-main_Vars.data_textSize[0]/2, y, text, color)
     elif mid and not size:
         tmp = pygame.font.Font.size(main_Vars.data_font, text)
