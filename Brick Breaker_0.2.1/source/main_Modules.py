@@ -8,16 +8,19 @@ import main_Vars
 # --FitTextDraw Module--#
 
 def fitTextDraw(font, limW, limH, text, X1, Y1, color, Ycorrection=0, Xcorrection=0, bold=False, italic=False,
-                prev=False):
+                prev=False,save=False):
     if not prev:
         tmp = 100
         createText(font, tmp, text=text, bold=bold, italic=italic)
         while main_Vars.data_textSize[0] > limW or main_Vars.data_textSize[1] > limH:
-            createText(font, tmp, text=text, bold=bold, italic=italic)
             tmp -= 1
+            createText(font, tmp, text=text, bold=bold, italic=italic)
+            main_Vars.data_fitTextSize = tmp
     else:
         tmp = pygame.font.Font.size(main_Vars.data_font, text)
         main_Vars.data_textSize = tmp
+    if save:
+        main_Vars.data_savedTextSize = main_Vars.data_textSize
     drawText(X1 + (limW - main_Vars.data_textSize[0]) / 2, Y1 + (limH - main_Vars.data_textSize[1]) / 2, text, (color),
              ycor=Ycorrection, xcor=Xcorrection)
 
@@ -31,6 +34,8 @@ def createText(f, size, text="", bold=False, italic=False):
     main_Vars.data_font = pygame.font.Font(f, size, bold=bold, italic=italic)
     tmp = pygame.font.Font.size(main_Vars.data_font, text)
     main_Vars.data_textSize = tmp
+    return tmp
+
 
 
 def normTextDraw(font, x, y, text, color, bold=False, size = False,italic=False,mid=True):

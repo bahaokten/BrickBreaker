@@ -30,18 +30,22 @@ def drawMenu():
     main_Modules.normTextDraw(main_Vars.data_fontFile1, main_Vars.data_canvasX / 2, 12, "Brick Breaker", main_Vars.GOLD,
                               bold=False,
                               italic=True, size=60)
-    sprite_Button.buttonCreator(480, 350, 100, 50, (105, 250, 250), (50, 150, 150), "levelmenu1", "START",
+    sprite_Button.buttonCreator(480, 350, 100, 50, (105, 250, 250), (50, 150, 150), "lvlmenu1", "START",
                                 main_Vars.data_fontFile1, (100, 50, 50), mid=True, Ycor=4)
     sprite_Button.spawnCreatedButtons()
     main_Vars.data_allSprites.update()
 
 
 def drawLevelMenu(page):
-    resetTextGround()
     resetBackGround()
+    resetButtons()
+    resetButtonGround()
+    resetTextGround()
     main_Draw.drawMenuBackGround2()
     if page == 1:
         main_Draw.drawLevelSelectMenu(page,1, level2=2, level3=2, level4=2,level5 = 2,level6 =2)
+    elif page == 2:
+        main_Draw.drawLevelSelectMenu(page,1,level2 = 1,level3=2)
     main_Modules.normTextDraw(main_Vars.data_fontFile1, main_Vars.data_canvasX / 2, 12, "Select Level", main_Vars.BLACK,
                               bold=False,
                               italic=True, size=60)
@@ -57,3 +61,10 @@ def resetBackGround():
 def resetTextGround():
     main_Vars.data_textGround.fill((0, 0, 0, 0), (0, 0, main_Vars.data_canvasX, main_Vars.data_canvasY))
     main_Vars.data_updateAll = True
+
+def resetButtonGround():
+    main_Vars.data_buttonGround.fill((0, 0, 0, 0), (0, 0, main_Vars.data_canvasX, main_Vars.data_canvasY))
+    main_Vars.data_updateAll = True
+
+def resetButtons():
+    main_Vars.data_spriteGroup_buttons.empty()

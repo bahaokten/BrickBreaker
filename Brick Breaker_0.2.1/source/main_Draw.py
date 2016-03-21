@@ -121,16 +121,41 @@ def drawLevelSelectMenu(page, level1, level2=0, level3=0, level4=0, level5=0, le
                                         usePrevFont=True)
         else:
             drawLockedLevel(615, midY + distance)
-    if page != 1:
+    if page > 1:
         pygame.draw.polygon(main_Vars.data_buttonGround, main_Vars.SILVER, ((30,midY), (100,midY-60), (100,midY+60)))
         sprite_Button.buttonCreator(110, midY, 100, 50, main_Vars.SILVER,
-                                        main_Vars.CHROME, "levelmenu"+str(page-1), "PLAY",
+                                        main_Vars.CHROME, "lvlmenu"+str(page-1), "PREV",
+                                        main_Vars.data_fontFile1, main_Vars.LIGHTBLACK, mid=True, Ycor=4,
+                                        usePrevFont=True)
+    pygame.draw.polygon(main_Vars.data_buttonGround, main_Vars.SILVER, ((main_Vars.data_canvasX-30,midY), (main_Vars.data_canvasX-100,midY-60), (main_Vars.data_canvasX-100,midY+60)))
+    sprite_Button.buttonCreator(main_Vars.data_canvasX-110, midY, 100, 50, main_Vars.SILVER,
+                                        main_Vars.CHROME, "lvlmenu"+str(page+1), "NEXT",
                                         main_Vars.data_fontFile1, main_Vars.LIGHTBLACK, mid=True, Ycor=4,
                                         usePrevFont=True)
     sprite_Button.spawnCreatedButtons()
 
     if level1:
         main_Modules.normTextDraw(main_Vars.data_fontFile2, 150+195/2, 100, "Level"+str(level1), main_Vars.DARKRED,
+                              bold=False,
+                              italic=True, size=40)
+    if level2:
+        main_Modules.normTextDraw(main_Vars.data_fontFile2, midX, 100, "Level"+str(level2), main_Vars.DARKRED,
+                              bold=False,
+                              italic=True, size=40)
+    if level3:
+        main_Modules.normTextDraw(main_Vars.data_fontFile2, 615 + 195 / 2, 100, "Level"+str(level3), main_Vars.DARKRED,
+                              bold=False,
+                              italic=True, size=40)
+    if level4:
+        main_Modules.normTextDraw(main_Vars.data_fontFile2, 150 + 195 / 2, 300 + distance, "Level"+str(level4), main_Vars.DARKRED,
+                              bold=False,
+                              italic=True, size=40)
+    if level5:
+        main_Modules.normTextDraw(main_Vars.data_fontFile2, midX, 300 + distance, "Level"+str(level5), main_Vars.DARKRED,
+                              bold=False,
+                              italic=True, size=40)
+    if level6:
+        main_Modules.normTextDraw(main_Vars.data_fontFile2,  615 + 195 / 2, 300 + distance, "Level"+str(level5), main_Vars.DARKRED,
                               bold=False,
                               italic=True, size=40)
 

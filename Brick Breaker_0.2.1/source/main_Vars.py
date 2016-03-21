@@ -46,7 +46,10 @@ data_spriteGroup_bricks = pygame.sprite.Group()
 data_textSize = 0
 data_fontFile1 = "Resources/Font_1.ttf"
 data_fontFile2 = "Resources/Font_2.ttf"
-
+data_savedTextSize = []
+data_font = None
+#main_Vars.data_font = pygame.font.Font(f, size, bold=bold, italic=italic)
+#data_font2 = pygame.font.Font()
 
 # ---BRICKS---#
 data_brickSizeX = 64
@@ -66,6 +69,7 @@ data_right = False
 
 
 # ###############################################3---LEVEL---##################################33
+
 data_currentLevel = []
 data_lvlLayout = [[[], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
                   [[], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
@@ -88,8 +92,7 @@ data_lvlLayout = [[[], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
                   [[], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
                   [[], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
                   [[], [], [], [], [], [], [], [], [], [], [], [], [], [], []]]
-data_isLevel1 = True
-data_isLevel2 = False
+
 data_level1 = [
     [[[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(YELLOW)], "-", 1], [[(GREEN)], "-", 1],
      [[(DARKGREEN)], "-", 1],
@@ -134,12 +137,20 @@ data_level1 = [
 data_level2 = [[[[(GREEN)], "-", 1], [], [], [[(ORANGE)], "-", 1], [], [[(ORANGE)], "-", 1], [[(GREEN)], "-", 1], [], [], [[(GREEN)], "-", 1], [[(ORANGE)], "-", 1], [], [], [], []],
                   [[[(GREEN)], "-", 1], [[(ORANGE)], "-", 1], [], [], [], [], [], [], [[(GREEN)], "-", 1], [], [], [], [], [], [[(ORANGE)], "-", 1]]]
 
-
+data_isLevel1 = True
+data_isLevel2 = False
+data_isLevel3 = False
+data_isLevel4 = False
+data_isLevel5 = False
+data_isLevel6 = False
+data_isLevel7 = False
 
 def levelHandler(level):
     if level == 1:
         return data_level1
     elif level ==2:
+        return data_level2
+    elif level > 2:
         return data_level2
 
 
@@ -147,6 +158,8 @@ def isLevelHandler(level):
     if level == 1:
         return data_isLevel1
     elif level == 2:
+        return data_isLevel2
+    elif level > 2:
         return data_isLevel2
 
 ##########GROUNDS####################################

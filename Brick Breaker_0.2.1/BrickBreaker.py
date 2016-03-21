@@ -35,8 +35,10 @@ def doGame():
     if not main_Vars.data_tick1:
         if main_Vars.data_state == "menu":
             main_Handler.drawMenu()
-        elif main_Vars.data_state == "levelmenu1":
+        elif main_Vars.data_state == "lvlmenu1":
             main_Handler.drawLevelMenu(1)
+        elif main_Vars.data_state == "lvlmenu2":
+            main_Handler.drawLevelMenu(2)
         main_Vars.data_tick1 = True
     main_Vars.data_spriteGroup_paddle.update()
 
@@ -91,21 +93,16 @@ def main():
 
 
         main_Vars.screen.blit(main_Vars.data_backGround, (0, 0))
-        if main_Vars.data_state == "play":
+        if "level" in main_Vars.data_state:
             main_Vars.screen.blit(main_Vars.data_paddleGround, (0, main_Vars.data_paddleY))
             main_Vars.screen.blit(main_Vars.data_foreGround, (0, 0))
         main_Vars.screen.blit(main_Vars.data_buttonGround, (0, 0))
         main_Vars.screen.blit(main_Vars.data_textGround, (0, 0))
-        """
-        main_Vars.screen.blit(main_Vars.data_buttonground, (0, 0))
-        main_Vars.screen.blit(main_Vars.data_textground, (0, 0))
-        """
         if not main_Vars.data_updateAll:
             pygame.display.update(main_Vars.data_rect)
         else:
             pygame.display.update()
             main_Vars.data_updateAll = False
-            print ("hey")
         main_Vars.data_rect = []
         #pygame.display.update()
 
