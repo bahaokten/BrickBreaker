@@ -45,7 +45,7 @@ data_spriteGroup_bricks = pygame.sprite.Group()
 # ---FONTS&TEXTS---#
 data_textSize = 0
 data_fontFile1 = "Resources/Font_1.ttf"
-data_fontFile2 = "Resources/Mona Shark.otf"
+data_fontFile2 = "Resources/Font_2.ttf"
 
 
 # ---BRICKS---#
@@ -148,14 +148,6 @@ def isLevelHandler(level):
         return data_isLevel1
     elif level == 2:
         return data_isLevel2
-
-
-def levelStateHandler(level):
-    if level == 1:
-        return "level1"
-    elif level == 2:
-        return "level2"
-
 
 ##########GROUNDS####################################
 # color,powerup,lives

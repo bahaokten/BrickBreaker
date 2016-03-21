@@ -5,6 +5,7 @@ import pygame
 import main_Vars
 import sprite_Button
 from math import pi
+import main_Modules
 
 
 #####################RAW DRAW FUNCTIONS###############################################################
@@ -64,15 +65,14 @@ def drawMenuBackGround2():
     """
 
 
-def drawLevelSelectMenu(level1, level2=0, level3=0, level4=0, level5=0, level6=0):
+def drawLevelSelectMenu(page, level1, level2=0, level3=0, level4=0, level5=0, level6=0):
     distance = 70
     midY = main_Vars.data_canvasY / 2
     midX = main_Vars.data_canvasX / 2
     # level1
     if main_Vars.isLevelHandler(level1):
         drawLevelSelect(level1, 150, midY - 130 - distance)
-        tmp = main_Vars.levelStateHandler(level1)  # gets the new state button will issue
-        sprite_Button.buttonCreator(150 + 195 / 2, midY - 30, 100, 50, (105, 250, 250), (50, 150, 150), tmp, "PLAY",
+        sprite_Button.buttonCreator(150 + 195 / 2, midY - 30, 100, 50, (105, 250, 250), (50, 150, 150), "level"+str(level1), "PLAY",
                                     main_Vars.data_fontFile1, (100, 50, 50), mid=True, Ycor=4,
                                     usePrevFont=True)
     else:
@@ -80,8 +80,7 @@ def drawLevelSelectMenu(level1, level2=0, level3=0, level4=0, level5=0, level6=0
     if level2:
         if main_Vars.isLevelHandler(level2):
             drawLevelSelect(level2, midX - 195 / 2, midY - 130 - distance)
-            tmp = main_Vars.levelStateHandler(level2)
-            sprite_Button.buttonCreator(midX, midY - 30, 100, 50, (105, 250, 250), (50, 150, 150), tmp, "PLAY",
+            sprite_Button.buttonCreator(midX, midY - 30, 100, 50, (105, 250, 250), (50, 150, 150), "level"+str(level2), "PLAY",
                                         main_Vars.data_fontFile1, (100, 50, 50), mid=True, Ycor=4,
                                         usePrevFont=True)
         else:
@@ -90,8 +89,7 @@ def drawLevelSelectMenu(level1, level2=0, level3=0, level4=0, level5=0, level6=0
     if level3:
         if main_Vars.isLevelHandler(level3):
             drawLevelSelect(level3, 615, midY - 130 - distance)
-            tmp = main_Vars.levelStateHandler(level3)
-            sprite_Button.buttonCreator(615 + 195 / 2, midY - 30, 100, 50, (105, 250, 250), (50, 150, 150), tmp, "PLAY",
+            sprite_Button.buttonCreator(615 + 195 / 2, midY - 30, 100, 50, (105, 250, 250), (50, 150, 150), "level"+str(level3), "PLAY",
                                         main_Vars.data_fontFile1, (100, 50, 50), mid=True, Ycor=4,
                                         usePrevFont=True)
         else:
@@ -99,9 +97,8 @@ def drawLevelSelectMenu(level1, level2=0, level3=0, level4=0, level5=0, level6=0
     if level4:
         if main_Vars.isLevelHandler(level4):
             drawLevelSelect(level4, 150, midY + distance)
-            tmp = main_Vars.levelStateHandler(level4)
             sprite_Button.buttonCreator(150 + 195 / 2, midY + 130 + distance + 15 + 25, 100, 50, (105, 250, 250),
-                                        (50, 150, 150), tmp, "PLAY",
+                                        (50, 150, 150), "level"+str(level4), "PLAY",
                                         main_Vars.data_fontFile1, (100, 50, 50), mid=True, Ycor=4,
                                         usePrevFont=True)
         else:
@@ -109,9 +106,8 @@ def drawLevelSelectMenu(level1, level2=0, level3=0, level4=0, level5=0, level6=0
     if level5:
         if main_Vars.isLevelHandler(level5):
             drawLevelSelect(level5, midX - 195 / 2, midY + distance)
-            tmp = main_Vars.levelStateHandler(level5)
             sprite_Button.buttonCreator(midX, midY + 130 + distance + 15 + 25, 100, 50, (105, 250, 250), (50, 150, 150),
-                                        tmp, "PLAY",
+                                        "level"+str(level5), "PLAY",
                                         main_Vars.data_fontFile1, (100, 50, 50), mid=True, Ycor=4,
                                         usePrevFont=True)
         else:
@@ -119,14 +115,26 @@ def drawLevelSelectMenu(level1, level2=0, level3=0, level4=0, level5=0, level6=0
     if level6:
         if main_Vars.isLevelHandler(level6):
             drawLevelSelect(level6, 615, midY + distance)
-            tmp = main_Vars.levelStateHandler(level6)
             sprite_Button.buttonCreator(615 + 195 / 2, midY + 130 + distance + 15 + 25, 100, 50, (105, 250, 250),
-                                        (50, 150, 150), tmp, "PLAY",
+                                        (50, 150, 150), "level"+str(level6), "PLAY",
                                         main_Vars.data_fontFile1, (100, 50, 50), mid=True, Ycor=4,
                                         usePrevFont=True)
         else:
             drawLockedLevel(615, midY + distance)
+    if page != 1:
+        pygame.draw.polygon(main_Vars.data_buttonGround, main_Vars.SILVER, ((30,midY), (100,midY-60), (100,midY+60)))
+        sprite_Button.buttonCreator(110, midY, 100, 50, main_Vars.SILVER,
+                                        main_Vars.CHROME, "levelmenu"+str(page-1), "PLAY",
+                                        main_Vars.data_fontFile1, main_Vars.LIGHTBLACK, mid=True, Ycor=4,
+                                        usePrevFont=True)
     sprite_Button.spawnCreatedButtons()
+
+    if level1:
+        main_Modules.normTextDraw(main_Vars.data_fontFile2, 150+195/2, 100, "Level"+str(level1), main_Vars.DARKRED,
+                              bold=False,
+                              italic=True, size=40)
+
+
 
 
 def drawLevelSelect(level, x, y):

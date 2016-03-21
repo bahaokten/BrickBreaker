@@ -41,7 +41,10 @@ def drawLevelMenu(page):
     resetBackGround()
     main_Draw.drawMenuBackGround2()
     if page == 1:
-        main_Draw.drawLevelSelectMenu(2, level2=2, level3=2, level4=2,level5 = 2,level6 =2)
+        main_Draw.drawLevelSelectMenu(page,1, level2=2, level3=2, level4=2,level5 = 2,level6 =2)
+    main_Modules.normTextDraw(main_Vars.data_fontFile1, main_Vars.data_canvasX / 2, 12, "Select Level", main_Vars.BLACK,
+                              bold=False,
+                              italic=True, size=60)
 
 
 # __________________________RESET FUNCTIONS_________________________________
