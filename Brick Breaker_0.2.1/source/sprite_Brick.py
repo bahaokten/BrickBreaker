@@ -42,6 +42,7 @@ class Brick(pygame.sprite.Sprite):
 
 
 def createBrick(col, row, colorList, powerup, lives):
+    print "$#$ | Brick", row * 15 + col, "|", "-row:", row, " -col:", col, " -Color List:", colorList, " -Powerup:", powerup, " -Lives:", lives
     brick = Brick(col, row, colorList, powerup, lives)
     main_Vars.data_spriteGroup_bricks.add(brick)
 

@@ -38,7 +38,8 @@ data_allSprites = pygame.sprite.Group()
 data_spriteGroup_buttons = pygame.sprite.Group()
 # ---PADDLE---#
 data_spriteGroup_paddle = pygame.sprite.Group()
-data_paddleY = data_canvasY-100
+data_paddleY = data_canvasY - 100
+data_paddleMidX = 0
 # ---BRICKS--#
 data_spriteGroup_bricks = pygame.sprite.Group()
 data_brickSizeX = 64
@@ -56,8 +57,8 @@ data_fontFile1 = "Resources/Font_1.ttf"
 data_fontFile2 = "Resources/Font_2.ttf"
 data_savedTextSize = []
 data_font = None
-#main_Vars.data_font = pygame.font.Font(f, size, bold=bold, italic=italic)
-#data_font2 = pygame.font.Font()
+# main_Vars.data_font = pygame.font.Font(f, size, bold=bold, italic=italic)
+# data_font2 = pygame.font.Font()
 
 
 ################################################### ---INPUT---####################################3
@@ -65,6 +66,7 @@ data_font = None
 data_left = False
 data_right = False
 data_space = False
+data_mousePressedPos = ()
 
 
 # ###############################################3---LEVEL---##################################33
@@ -133,21 +135,28 @@ data_level1 = [
      [[(DARKGREEN)], "-", 1], [[(GREEN)], "-", 1], [[(YELLOW)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1],
      [[(ORANGE)], "-", 1]]]
 
-data_level2 = [[[[(GREEN)], "-", 1], [], [], [[(ORANGE)], "-", 1], [], [[(ORANGE)], "-", 1], [[(GREEN)], "-", 1], [], [], [[(GREEN)], "-", 1], [[(ORANGE)], "-", 1], [], [], [], []],
-                  [[[(GREEN)], "-", 1], [[(ORANGE)], "-", 1], [], [], [], [], [], [], [[(GREEN)], "-", 1], [], [], [], [], [], [[(ORANGE)], "-", 1]]]
+data_level2 = [
+    [[[(GREEN)], "-", 1], [], [], [[(ORANGE)], "-", 1], [], [[(ORANGE)], "-", 1], [[(GREEN)], "-", 1], [], [],
+     [[(GREEN)], "-", 1], [[(ORANGE)], "-", 1], [], [], [], []],
+    [[[(GREEN)], "-", 1], [[(ORANGE)], "-", 1], [], [], [], [], [], [], [[(GREEN)], "-", 1], [], [], [], [], [],
+     [[(ORANGE)], "-", 1]]]
+
+# isLevel is needed for updating the level sprites. it should be set back to false by the level GUI when level is over
+data_isLevel = False
 
 data_isLevel1 = True
-data_isLevel2 = False
+data_isLevel2 = True
 data_isLevel3 = False
 data_isLevel4 = False
 data_isLevel5 = False
 data_isLevel6 = False
 data_isLevel7 = False
 
+
 def levelHandler(level):
     if level == 1:
         return data_level1
-    elif level ==2:
+    elif level == 2:
         return data_level2
     elif level > 2:
         return data_level2
@@ -160,6 +169,7 @@ def isLevelHandler(level):
         return data_isLevel2
     elif level > 2:
         return data_isLevel2
+
 
 ##########GROUNDS####################################
 # color,powerup,lives
@@ -175,6 +185,5 @@ data_buttonGround = data_buttonGround.convert_alpha()
 data_textGround = pygame.Surface(screen.get_size(), pygame.SRCALPHA, 32)
 data_textGround = data_textGround.convert_alpha()
 data_backGround = data_backGround.convert()
-data_mousePressedPos = ()
 data_paddleGround.set_colorkey((1, 2, 3), RLEACCEL)
-data_foreGround.set_colorkey((1,2,3),RLEACCEL)
+# data_foreGround.set_colorkey((1,2,3),RLEACCEL)

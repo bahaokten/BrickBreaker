@@ -72,11 +72,13 @@ class Button(pygame.sprite.Sprite):
         if not self.prev:
             self.draw = main_Modules.fitTextDraw(self.font, self.W - 2 * self.depth, self.H - 2 * self.depth, self.text,
                                                  self.X + self.depth, self.Y + self.depth, self.color3,
-                                                 bold=self.bold, italic=self.italic,prev = self.prev, Ycorrection=self.Ycor,save=True)
+                                                 bold=self.bold, italic=self.italic, prev=self.prev,
+                                                 Ycorrection=self.Ycor, save=True)
         else:
-            self.draw = main_Modules.normTextDraw(self.font, self.X+self.W/2, self.Y+(main_Vars.data_savedTextSize[1])/2+self.Ycor,
+            self.draw = main_Modules.normTextDraw(self.font, self.X + self.W / 2,
+                                                  self.Y + (main_Vars.data_savedTextSize[1]) / 2 + self.Ycor,
                                                   self.text, self.color3, bold=self.bold, italic=self.italic,
-                                                  size=main_Vars.data_fitTextSize,mid=True)
+                                                  size=main_Vars.data_fitTextSize, mid=True)
 
     def kill(self, text):
         if text == self.text or text == "":

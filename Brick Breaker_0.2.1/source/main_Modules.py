@@ -8,7 +8,7 @@ import main_Vars
 # --FitTextDraw Module--#
 
 def fitTextDraw(font, limW, limH, text, X1, Y1, color, Ycorrection=0, Xcorrection=0, bold=False, italic=False,
-                prev=False,save=False):
+                prev=False, save=False):
     if not prev:
         tmp = 100
         createText(font, tmp, text=text, bold=bold, italic=italic)
@@ -37,20 +37,19 @@ def createText(f, size, text="", bold=False, italic=False):
     return tmp
 
 
-
-def normTextDraw(font, x, y, text, color, bold=False, size = False,italic=False,mid=True):
-    #if size is not changed there is no point in changing bold and italic variables since the function wont create a new font for the text
+def normTextDraw(font, x, y, text, color, bold=False, size=False, italic=False, mid=True):
+    # if size is not changed there is no point in changing bold and italic variables since the function wont create a new font for the text
     if size and not mid:
         createText(font, size, text=text, bold=bold, italic=italic)
         drawText(x, y, text, color)
     if mid and size:
         createText(font, size, text=text, bold=bold, italic=italic)
-        drawText(x-main_Vars.data_textSize[0]/2, y, text, color)
+        drawText(x - main_Vars.data_textSize[0] / 2, y, text, color)
     elif mid and not size:
         tmp = pygame.font.Font.size(main_Vars.data_font, text)
-        drawText(x-tmp[0]/2,y,text,color)
+        drawText(x - tmp[0] / 2, y, text, color)
     else:
-        drawText(x,y,text,color)
+        drawText(x, y, text, color)
 
 
 # Collision Detection
@@ -61,6 +60,7 @@ def mouseCollision(X1, Y1, W, H):
             return True
         else:
             return False
+
 
 # Object Middle
 
