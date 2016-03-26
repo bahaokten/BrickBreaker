@@ -38,8 +38,16 @@ data_allSprites = pygame.sprite.Group()
 data_spriteGroup_buttons = pygame.sprite.Group()
 # ---PADDLE---#
 data_spriteGroup_paddle = pygame.sprite.Group()
+data_paddleY = data_canvasY-100
 # ---BRICKS--#
 data_spriteGroup_bricks = pygame.sprite.Group()
+data_brickSizeX = 64
+data_brickSizeY = 25
+data_brickSizeXSelect = 13
+data_brickSizeYSelect = 5
+data_brickYMargin = 10
+# ---BALL -- #
+data_spriteGroup_ball = pygame.sprite.Group()
 ###############################################################################################################################################3
 
 # ---FONTS&TEXTS---#
@@ -51,21 +59,12 @@ data_font = None
 #main_Vars.data_font = pygame.font.Font(f, size, bold=bold, italic=italic)
 #data_font2 = pygame.font.Font()
 
-# ---BRICKS---#
-data_brickSizeX = 64
-data_brickSizeY = 25
-data_brickSizeXSelect = 13
-data_brickSizeYSelect = 5
-data_brickYMargin = 10
-
-# Paddle#
-data_paddleY = 300
-
 
 ################################################### ---INPUT---####################################3
 
 data_left = False
 data_right = False
+data_space = False
 
 
 # ###############################################3---LEVEL---##################################33
@@ -96,41 +95,41 @@ data_lvlLayout = [[[], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
 data_level1 = [
     [[[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(YELLOW)], "-", 1], [[(GREEN)], "-", 1],
      [[(DARKGREEN)], "-", 1],
-     [[(DARKRED)], "-", 1], [[(LIGHTBLACK)], "-", 1], [[(DARKRED)], "-", 1],
+     [[(DARKRED)], "-", 1], [[(GRAY)], "-", 1], [[(DARKRED)], "-", 1],
      [[(DARKGREEN)], "-", 1], [[(GREEN)], "-", 1], [[(YELLOW)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1],
      [[(ORANGE)], "-", 1]],
     [[[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(YELLOW)], "-", 1], [[(GREEN)], "-", 1],
      [[(DARKGREEN)], "-", 1],
-     [[(DARKRED)], "-", 1], [[(LIGHTBLACK)], "-", 1], [[(DARKRED)], "-", 1],
+     [[(DARKRED)], "-", 1], [[(GRAY)], "-", 1], [[(DARKRED)], "-", 1],
      [[(DARKGREEN)], "-", 1], [[(GREEN)], "-", 1], [[(YELLOW)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1],
      [[(ORANGE)], "-", 1]],
     [[], [], [[(ORANGE)], "-", 1], [[(YELLOW)], "-", 1], [[(GREEN)], "-", 1], [[(DARKGREEN)], "-", 1],
      [[(DARKRED)], "-", 1],
-     [[(LIGHTBLACK)], "-", 1], [[(DARKRED)], "-", 1],
+     [[(GRAY)], "-", 1], [[(DARKRED)], "-", 1],
      [[(DARKGREEN)], "-", 1], [[(GREEN)], "-", 1], [[(YELLOW)], "-", 1], [([(ORANGE)]), "-", 1], [], []],
     [[[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(YELLOW)], "-", 1], [[(GREEN)], "-", 1],
      [[(DARKGREEN)], "-", 1],
-     [[(DARKRED)], "-", 1], [[(LIGHTBLACK)], "-", 1], [[(DARKRED)], "-", 1],
+     [[(DARKRED)], "-", 1], [[(GRAY)], "-", 1], [[(DARKRED)], "-", 1],
      [[(DARKGREEN)], "-", 1], [[(GREEN)], "-", 1], [[(YELLOW)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1],
      [[(ORANGE)], "-", 1]],
     [[[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(YELLOW)], "-", 1], [[(GREEN)], "-", 1],
      [[(DARKGREEN)], "-", 1],
-     [[(DARKRED)], "-", 1], [[(LIGHTBLACK)], "-", 1], [[(DARKRED)], "-", 1],
+     [[(DARKRED)], "-", 1], [[(GRAY)], "-", 1], [[(DARKRED)], "-", 1],
      [[(DARKGREEN)], "-", 1], [[(GREEN)], "-", 1], [[(YELLOW)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1],
      [[(ORANGE)], "-", 1]],
     [[[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(YELLOW)], "-", 1], [[(GREEN)], "-", 1],
      [[(DARKGREEN)], "-", 1],
-     [[(DARKRED)], "-", 1], [[(LIGHTBLACK)], "-", 1], [[(DARKRED)], "-", 1],
+     [[(DARKRED)], "-", 1], [[(GRAY)], "-", 1], [[(DARKRED)], "-", 1],
      [[(DARKGREEN)], "-", 1], [[(GREEN)], "-", 1], [[(YELLOW)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1],
      [[(ORANGE)], "-", 1]],
     [[[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(YELLOW)], "-", 1], [[(GREEN)], "-", 1],
      [[(DARKGREEN)], "-", 1],
-     [[(DARKRED)], "-", 1], [[(LIGHTBLACK)], "-", 1], [[(DARKRED)], "-", 1],
+     [[(DARKRED)], "-", 1], [[(GRAY)], "-", 1], [[(DARKRED)], "-", 1],
      [[(DARKGREEN)], "-", 1], [[(GREEN)], "-", 1], [[(YELLOW)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1],
      [[(ORANGE)], "-", 1]],
     [[[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(YELLOW)], "-", 1], [[(GREEN)], "-", 1],
      [[(DARKGREEN)], "-", 1],
-     [[(DARKRED)], "-", 1], [[(LIGHTBLACK)], "-", 1], [[(DARKRED)], "-", 1],
+     [[(DARKRED)], "-", 1], [[(GRAY)], "-", 1], [[(DARKRED)], "-", 1],
      [[(DARKGREEN)], "-", 1], [[(GREEN)], "-", 1], [[(YELLOW)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1],
      [[(ORANGE)], "-", 1]]]
 
@@ -171,7 +170,6 @@ screen = pygame.display.set_mode((960, 700))
 data_backGround = pygame.Surface(screen.get_size())
 data_paddleGround = pygame.Surface((960, 21))
 data_foreGround = pygame.Surface(screen.get_size(), pygame.SRCALPHA, 32)
-data_foreGround = data_foreGround.convert_alpha()
 data_buttonGround = pygame.Surface(screen.get_size(), pygame.SRCALPHA, 32)
 data_buttonGround = data_buttonGround.convert_alpha()
 data_textGround = pygame.Surface(screen.get_size(), pygame.SRCALPHA, 32)
@@ -179,3 +177,4 @@ data_textGround = data_textGround.convert_alpha()
 data_backGround = data_backGround.convert()
 data_mousePressedPos = ()
 data_paddleGround.set_colorkey((1, 2, 3), RLEACCEL)
+data_foreGround.set_colorkey((1,2,3),RLEACCEL)

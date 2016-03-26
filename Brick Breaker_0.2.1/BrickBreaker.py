@@ -5,6 +5,7 @@ from pygame.locals import *
 
 import main_Vars
 import main_Handler
+import sprite_Ball
 import main_Draw
 
 
@@ -39,6 +40,8 @@ def doGame():
             main_Handler.drawLevelMenu(1)
         elif main_Vars.data_state == "lvlmenu2":
             main_Handler.drawLevelMenu(2)
+        elif main_Vars.data_state == "level1":
+            main_Handler.levelCreator(1)
         main_Vars.data_tick1 = True
     main_Vars.data_spriteGroup_paddle.update()
 
@@ -75,11 +78,15 @@ def main():
                     main_Vars.data_right = True
                 elif event.key == pygame.K_LEFT:
                     main_Vars.data_left = True
+                if event.key == pygame.K_SPACE:
+                    main_Vars.data_space = True
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_RIGHT:
                     main_Vars.data_right = False
                 elif event.key == pygame.K_LEFT:
                     main_Vars.data_left = False
+                if event.key == pygame.K_SPACE:
+                    main_Vars.data_space = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 main_Vars.data_mousePressedPos = pygame.mouse.get_pos()
                 main_Vars.data_spriteGroup_buttons.update("d")
@@ -89,6 +96,9 @@ def main():
 
         text = "Bricks Alpha 0.2 {" + "FPS: {0:.2f}   Playtime: {1:.2f}".format(clock.get_fps(), playtime) + "}"
         pygame.display.set_caption(text)
+        if "level" in main_Vars.data_state:
+            main_Vars.data_paddleGround.fill((1, 2, 3))
+
         doGame()
 
 
@@ -98,11 +108,13 @@ def main():
             main_Vars.screen.blit(main_Vars.data_foreGround, (0, 0))
         main_Vars.screen.blit(main_Vars.data_buttonGround, (0, 0))
         main_Vars.screen.blit(main_Vars.data_textGround, (0, 0))
+        sprite_Ball.drawBalls()
         if not main_Vars.data_updateAll:
             pygame.display.update(main_Vars.data_rect)
         else:
             pygame.display.update()
             main_Vars.data_updateAll = False
+        print (main_Vars.data_rect)
         main_Vars.data_rect = []
         #pygame.display.update()
 

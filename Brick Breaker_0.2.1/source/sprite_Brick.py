@@ -33,7 +33,7 @@ class Brick(pygame.sprite.Sprite):
             # redraw
 
     def create(self):
-        self.image = pygame.Surface([self.width + self.outline, self.height + self.outline], pygame.SRCALPHA, 32)
+        self.image = pygame.Surface([self.width + self.outline, self.height + self.outline])
         pygame.draw.rect(self.image, main_Vars.BLACK, (0, 0, self.width + self.outline, self.height + self.outline))
         pygame.draw.rect(self.image, self.currentColor,
                          (self.outline, self.outline, self.width - self.outline, self.height - self.outline))
@@ -55,4 +55,3 @@ def createLevelBricks(level):
                 createBrick(col, row, level[row][col][0], level[row][col][1], level[row][col][2])
     for sprite in xrange(len(main_Vars.data_spriteGroup_bricks.sprites())):
         main_Vars.data_spriteGroup_bricks.sprites()[sprite].create()
-        print ("done", sprite)

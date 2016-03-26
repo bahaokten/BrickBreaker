@@ -6,6 +6,7 @@ import main_Vars
 import sprite_Button
 from math import pi
 import main_Modules
+import random
 
 
 #####################RAW DRAW FUNCTIONS###############################################################
@@ -57,7 +58,27 @@ def drawMenuBackGround2():
         curtainColor[1] -= 10
 
         # DRAW MENU LEVEL SELECT MODULE
-        """
+
+def drawLevelGUI():
+    pygame.draw.rect(main_Vars.data_buttonGround, main_Vars.LIGHTBLACK,(0,main_Vars.data_canvasY-70,main_Vars.data_canvasX,70))
+    pygame.draw.rect(main_Vars.data_buttonGround, main_Vars.EMERALD,(10,main_Vars.data_canvasY-60,main_Vars.data_canvasX-20,50))
+
+def drawLevelBackground(num):
+    if num ==1:
+        main_Vars.data_backGround.fill(main_Vars.LIGHTBLACK)
+        #Surface, color, pos, radius, width=0
+        radius = 0
+        for i in xrange(70):
+            color = (random.randint(0, 50),random.randint(0, 90),random.randint(0, 200))
+            radius = random.randint(50, 160)
+            pos = (random.randint(5, main_Vars.data_canvasX),random.randint(5, main_Vars.data_canvasY-70))
+            print (pos,radius)
+            pygame.draw.circle(main_Vars.data_backGround,color,pos,radius)
+        apart = 3
+        for i in xrange(int(main_Vars.data_canvasY/apart)):
+            pygame.draw.line(main_Vars.data_backGround, main_Vars.LIGHTBLACK, (0, i*apart), (main_Vars.data_canvasX, i*apart), 2)
+
+"""
 # self, X, Y, W, H, col1, col2, newState, text, font, col3, depth = 10, middle = True, bold= False, italic = False, usePrevFont = False)
     sprite_Button.buttonCreator(480, 350, 100, 50, (105, 250, 250),( 50, 150, 150), "levelmenu1", "START",
                                 main_Vars.data_fontFile1, (100, 50, 50), mid=True, Ycor=4)

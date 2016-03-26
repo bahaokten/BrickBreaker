@@ -8,6 +8,7 @@ import sprite_Paddle
 import sprite_Brick
 import sprite_Button
 import main_Draw
+import sprite_Ball
 
 
 # PADDLE AND BUTTON CREATE CALLS ARE WITHIN THE MODULE FILES
@@ -37,10 +38,7 @@ def drawMenu():
 
 
 def drawLevelMenu(page):
-    resetBackGround()
-    resetButtons()
-    resetButtonGround()
-    resetTextGround()
+    resetGeneral()
     main_Draw.drawMenuBackGround2()
     if page == 1:
         main_Draw.drawLevelSelectMenu(page,1, level2=2, level3=2, level4=2,level5 = 2,level6 =2)
@@ -51,7 +49,26 @@ def drawLevelMenu(page):
                               italic=True, size=60)
 
 
+def levelCreator(level):
+    resetGeneral()
+    tmp = main_Vars.levelHandler(level)
+    main_Draw.drawLevelGUI()
+    main_Draw.drawLevelBackground(1)
+    sprite_Brick.createLevelBricks(tmp)
+    sprite_Paddle.paddleCreator()
+    sprite_Ball.createBall(1)
+
+
+
 # __________________________RESET FUNCTIONS_________________________________
+
+def resetGeneral():
+    resetBackGround()
+    resetButtons()
+    resetButtonGround()
+    resetTextGround()
+
+
 
 def resetBackGround():
     main_Vars.data_backGround.fill((0, 0, 0), (0, 0, main_Vars.data_canvasX, main_Vars.data_canvasY))
