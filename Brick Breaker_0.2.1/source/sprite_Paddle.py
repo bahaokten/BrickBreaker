@@ -13,7 +13,7 @@ class Paddle(pygame.sprite.Sprite):
         self.state = state
         self.velX = velX
         self.size = size
-        self.rect = [x, 0]
+        self.rect = []
         self.add = 0
         if size == "medium":
             self.add = 0
@@ -23,6 +23,7 @@ class Paddle(pygame.sprite.Sprite):
             self.add = 20
         self.X = (main_Vars.data_canvasX - 98 + self.add) / 2
         print "-size:", size, " -Velocity:", self.velX, " -State:", self.state
+        main_Vars.data_paddleWidth = 98 + self.add
         pygame.sprite.Sprite.__init__(self)
 
     def update(self):
@@ -46,9 +47,14 @@ class Paddle(pygame.sprite.Sprite):
         main_Vars.data_paddleMidX = self.X + (98 + self.add) / 2
         main_Vars.data_paddleGround.fill((1, 2, 3))
         main_Vars.data_paddleGround.blit(self.image, [self.X, 0])
+        self.rect.x = self.X
+        self.rect.y = main_Vars.data_paddleY
 
     def create(self):
         self.image = pygame.Surface([self.add + 98, 21])
+        self.rect = self.image.get_rect()
+        self.rect.x = self.X
+        self.rect.y = main_Vars.data_paddleY
         # self.image = self.image.convert_alpha()
         self.image.fill((1, 2, 3))
         pygame.draw.ellipse(self.image, main_Vars.BLACK, (0, 0, 35, 20))

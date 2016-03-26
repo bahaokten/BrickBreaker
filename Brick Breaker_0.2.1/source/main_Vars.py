@@ -40,6 +40,7 @@ data_spriteGroup_buttons = pygame.sprite.Group()
 data_spriteGroup_paddle = pygame.sprite.Group()
 data_paddleY = data_canvasY - 100
 data_paddleMidX = 0
+data_paddleWidth = 0
 # ---BRICKS--#
 data_spriteGroup_bricks = pygame.sprite.Group()
 data_brickSizeX = 64
@@ -169,7 +170,6 @@ def isLevelHandler(level):
         return data_isLevel2
     elif level > 2:
         return data_isLevel2
-
 
 ##########GROUNDS####################################
 # color,powerup,lives

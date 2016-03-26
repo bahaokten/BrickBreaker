@@ -31,6 +31,7 @@ def doGame():
         main_Vars.data_spriteGroup_ball.update()
 
 
+
 # ================================####INITIAL CALLS####================================================================================#
 
 def main():
@@ -88,11 +89,11 @@ def main():
 
         main_Vars.screen.blit(main_Vars.data_backGround, (0, 0))
         if main_Vars.data_isLevel:
+            sprite_Ball.drawBalls()
             main_Vars.screen.blit(main_Vars.data_paddleGround, (0, main_Vars.data_paddleY))
             main_Vars.screen.blit(main_Vars.data_foreGround, (0, 0))
         main_Vars.screen.blit(main_Vars.data_buttonGround, (0, 0))
         main_Vars.screen.blit(main_Vars.data_textGround, (0, 0))
-        sprite_Ball.drawBalls()
         if not main_Vars.data_updateAll:
             pygame.display.update(main_Vars.data_rect)
         else:

@@ -82,6 +82,9 @@ def drawLevelBackground(num):
         for i in xrange(int(main_Vars.data_canvasY / apart)):
             pygame.draw.line(main_Vars.data_backGround, main_Vars.LIGHTBLACK, (0, i * apart),
                              (main_Vars.data_canvasX, i * apart), 2)
+        for i in xrange(int(main_Vars.data_canvasX / apart)):
+            pygame.draw.line(main_Vars.data_backGround, main_Vars.BLUE, (i*apart, 0),
+                             (i*apart,main_Vars.data_canvasY), 1)
 
 
 """
