@@ -17,6 +17,7 @@ class Brick(pygame.sprite.Sprite):
         self.outline = 6
         self.X = self.col * self.width
         self.Y = self.row * self.height + main_Vars.data_brickYMargin
+        self.rect = []
         # color list example ((0,20,20),(255,0,0))
         #                        last     first     lives
         self.currentColor = colorList[self.lives - 1]
@@ -32,17 +33,26 @@ class Brick(pygame.sprite.Sprite):
             self.currentColor = self.colorList[self.lives - 1]
             # redraw
 
+    def getMid(self):
+        return (self.X+self.width/2,self.Y+self.height/2)
+
     def create(self):
         self.image = pygame.Surface([self.width + self.outline, self.height + self.outline])
+        self.rect = self.image.get_rect()
         pygame.draw.rect(self.image, main_Vars.BLACK, (0, 0, self.width + self.outline, self.height + self.outline))
         pygame.draw.rect(self.image, self.currentColor,
                          (self.outline, self.outline, self.width - self.outline, self.height - self.outline))
         main_Vars.data_rect.append((self.X, self.Y, self.width, self.height))
         main_Vars.data_foreGround.blit(self.image, [self.X - self.outline / 2, self.Y - self.outline / 2])
+        self.rect.x = self.X
+        self.rect.y = self.Y
+
+    def info(self):
+        return self.row*15+self.col
 
 
 def createBrick(col, row, colorList, powerup, lives):
-    print "$#$ | Brick", row * 15 + col, "|", "-row:", row, " -col:", col, " -Color List:", colorList, " -Powerup:", powerup, " -Lives:", lives
+    print "$#$ | BRICK", row * 15 + col, "|", "-row:", row, " -col:", col, " -Color List:", colorList, " -Powerup:", powerup, " -Lives:", lives
     brick = Brick(col, row, colorList, powerup, lives)
     main_Vars.data_spriteGroup_bricks.add(brick)
 

@@ -62,10 +62,13 @@ def drawMenuBackGround2():
 
 
 def drawLevelGUI():
+    None
+    """
     pygame.draw.rect(main_Vars.data_buttonGround, main_Vars.LIGHTBLACK,
                      (0, main_Vars.data_canvasY - 70, main_Vars.data_canvasX, 70))
     pygame.draw.rect(main_Vars.data_buttonGround, main_Vars.EMERALD,
                      (10, main_Vars.data_canvasY - 60, main_Vars.data_canvasX - 20, 50))
+    """
 
 
 def drawLevelBackground(num):
@@ -79,12 +82,14 @@ def drawLevelBackground(num):
             pos = (random.randint(5, main_Vars.data_canvasX), random.randint(5, main_Vars.data_canvasY - 70))
             pygame.draw.circle(main_Vars.data_backGround, color, pos, radius)
         apart = 3
+        """
         for i in xrange(int(main_Vars.data_canvasY / apart)):
             pygame.draw.line(main_Vars.data_backGround, main_Vars.LIGHTBLACK, (0, i * apart),
                              (main_Vars.data_canvasX, i * apart), 2)
         for i in xrange(int(main_Vars.data_canvasX / apart)):
             pygame.draw.line(main_Vars.data_backGround, main_Vars.BLUE, (i*apart, 0),
                              (i*apart,main_Vars.data_canvasY), 1)
+        """
 
 
 """

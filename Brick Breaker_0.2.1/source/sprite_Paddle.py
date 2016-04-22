@@ -77,7 +77,7 @@ class Paddle(pygame.sprite.Sprite):
 
 def paddleCreator():
     print "=====>Paddle Created<====="
-    paddle = Paddle(350, "-", "medium", 15)
+    paddle = Paddle(350, "-", "medium", 5)
     main_Vars.data_spriteGroup_paddle.add(paddle)  # ,something)
     main_Vars.data_spriteGroup_paddle.sprites()[0].create()
     # main_Vars.data_spriteGroup_paddle.draw(main_Vars.data_paddleGround)

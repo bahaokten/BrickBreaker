@@ -42,6 +42,7 @@ class Button(pygame.sprite.Sprite):
             main_Vars.data_rect.append((self.rect[0], self.rect[1], self.W, self.H))
             # self.image.fill((0,0,0,0))
             if state == "d":
+                main_Vars.data_buttonClick.play(loops=0)
                 self.selfState = "d"
                 pygame.draw.rect(self.image, self.color2, (0, 0, self.W, self.H))
                 pygame.draw.rect(self.image, (self.color2[0] * 0.6, self.color2[1] * 0.6, self.color2[2] * 0.6),
@@ -55,7 +56,7 @@ class Button(pygame.sprite.Sprite):
             pygame.draw.rect(self.image, (self.color2[0] * 0.3, self.color2[1] * 0.3, self.color2[2] * 0.3),
                              (self.depth, self.depth, self.W - (self.depth * 2), self.H - (self.depth * 2)))
             main_Vars.data_buttonGround.blit(self.image, (self.X, self.Y))
-            main_Vars.data_state = self.newState
+            main_Vars.gamemodeChanger(self.newState)
             main_Vars.data_tick1 = False
             if self.oneUse:
                 self.kill(self.text)

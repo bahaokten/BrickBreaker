@@ -1,4 +1,5 @@
 from __future__ import print_function, division
+from math import sqrt
 
 import pygame
 
@@ -60,7 +61,18 @@ def mouseCollision(X1, Y1, W, H):
             return True
         else:
             return False
+#Point Slope Formula:
+def linearEquation(point,slope):
+    y = point[1]
+    x = point[0]
+    m = slope
+    return y-m*x
+#Length determiner
 
+def length(pos1,pos2):
+    x= abs(pos1[0]-pos2[0])
+    y = abs(pos1[1]-pos2[1])
+    return sqrt(int((int(x)^2)+(int(y)^2)))
 
 # Object Middle
 

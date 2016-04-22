@@ -25,10 +25,16 @@ def doGame():
             main_Handler.levelCreator(2)
         elif main_Vars.data_state == "gameoverbad":
             main_Vars.data_isLevel = False
+        if "level" in main_Vars.data_state:
+            main_Vars.playLevelMusic(main_Vars.data_musicFile1,volume = 0.5)
         main_Vars.data_tick1 = True
     if main_Vars.data_isLevel:
         main_Vars.data_spriteGroup_paddle.update()
         main_Vars.data_spriteGroup_ball.update()
+    if not main_Vars.data_tick2:
+        None
+        main_Vars.data_tick2 = True
+
 
 
 
@@ -44,7 +50,7 @@ def main():
     # Create Pygame clock object.
     clock = pygame.time.Clock()
     mainloop = True
-    FPS = 30
+    FPS = 120
     ###INTERACTIVES###
     ###-----------###
     playtime = 0.0
@@ -84,16 +90,18 @@ def main():
         pygame.display.set_caption(text)
         if main_Vars.data_isLevel:
             main_Vars.data_paddleGround.fill((1, 2, 3))
+            main_Vars.data_ballGround.fill((0,0,0,0))
 
         doGame()
 
         main_Vars.screen.blit(main_Vars.data_backGround, (0, 0))
         if main_Vars.data_isLevel:
-            sprite_Ball.drawBalls()
             main_Vars.screen.blit(main_Vars.data_paddleGround, (0, main_Vars.data_paddleY))
             main_Vars.screen.blit(main_Vars.data_foreGround, (0, 0))
+            main_Vars.screen.blit(main_Vars.data_ballGround, (0,0))
         main_Vars.screen.blit(main_Vars.data_buttonGround, (0, 0))
         main_Vars.screen.blit(main_Vars.data_textGround, (0, 0))
+        pygame.display.update(main_Vars.data_rect)
         if not main_Vars.data_updateAll:
             pygame.display.update(main_Vars.data_rect)
         else:
