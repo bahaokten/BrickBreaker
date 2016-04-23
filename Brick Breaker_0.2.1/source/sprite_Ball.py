@@ -59,12 +59,15 @@ class Ball(pygame.sprite.Sprite):
             self.Y += self.velY
             # SECOND PART WALL/PADDLE COLLISION
             if self.X + self.size > main_Vars.data_canvasX:
+                main_Vars.data_brick2.play(loops = 0)
                 self.velX = -self.velX
                 print "$#$ | BALL", self.ballnum, "|", "collided with | RIGHT WALL |  at", self.X, self.Y, ".Its new velocity is -VelX:", self.velX, " -VelY:", self.velY
             elif self.X < 0:
+                main_Vars.data_brick2.play(loops = 0)
                 self.velX = -self.velX
                 print "$#$ | BALL", self.ballnum, "|", "collided with | LEFT WALL |  at", self.X, self.Y, ".Its new velocity is -VelX:", self.velX, " -VelY:", self.velY
             elif self.Y < 0:
+                main_Vars.data_brick2.play(loops = 0)
                 self.Y = 0
                 self.velY = -self.velY
                 print "$#$ | BALL", self.ballnum, "|", "collided with | UPPER WALL |  at", self.X, self.Y, ".Its new velocity is -VelX:", self.velX, " -VelY:", self.velY

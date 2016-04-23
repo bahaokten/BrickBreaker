@@ -50,6 +50,7 @@ class Button(pygame.sprite.Sprite):
                 main_Vars.data_buttonGround.blit(self.image, (self.X, self.Y))
 
         elif state == "u" and self.selfState == "d":
+            main_Vars.data_buttonRelease.play(loops=0)
             main_Vars.data_rect.append((self.rect[0], self.rect[1], self.W, self.H))
             self.selfState = "u"
             pygame.draw.rect(self.image, self.color1, (0, 0, self.W, self.H))

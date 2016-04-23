@@ -240,7 +240,7 @@ def drawLevel(level, width=0, height=0, marginY=True, addX=0, addY=0, outline=5)
     cols = len(lvl[0])
     for row in xrange(rows):
         for col in xrange(cols):
-            if len(lvl[row][col]) != 0:
+            if lvl[row][col] != [None]:
                 drawBrick(col, row, lvl[row][col][0], width, height, marginY, addX, addY, outline)
 
 

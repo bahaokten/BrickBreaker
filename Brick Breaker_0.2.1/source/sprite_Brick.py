@@ -62,7 +62,7 @@ def createLevelBricks(level):
     cols = len(level[0])
     for row in xrange(rows):
         for col in xrange(cols):
-            if not level[row][col] == []:
+            if not level[row][col] == [None]:
                 createBrick(col, row, level[row][col][0], level[row][col][1], level[row][col][2])
     for sprite in xrange(len(main_Vars.data_spriteGroup_bricks.sprites())):
         main_Vars.data_spriteGroup_bricks.sprites()[sprite].create()

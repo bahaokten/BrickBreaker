@@ -67,37 +67,44 @@ data_font = None
 
 pygame.mixer.pre_init(frequency=44100, size=-16, channels=2, buffer=2048)
 pygame.mixer.init()
-#Level Music = Stairs
+# Level Music = Stairs
 data_musicFile1 = "Resources/Music_1.ogg"
-#Metal Block Hit
+# Metal Block Hit
 data_soundFile1 = "Resources/Sound_1.ogg"
 data_metalBrick = pygame.mixer.Sound(data_soundFile1)
-#Button Click
+# Button Click
 data_soundFile2 = "Resources/Sound_2.ogg"
 data_buttonClick = pygame.mixer.Sound(data_soundFile2)
 data_buttonClick.set_volume(0.6)
-#Thrown
+# Thrown
 data_soundFile3 = "Resources/Sound_3.ogg"
 data_thrown = pygame.mixer.Sound(data_soundFile3)
 data_thrown.set_volume(0.50)
-#Block Hit 1
+# Block Hit 1
 data_soundFile4 = "Resources/Sound_4.ogg"
 data_brick1 = pygame.mixer.Sound(data_soundFile4)
-#Block Hit 2
+# Block Hit 2
 data_soundFile5 = "Resources/Sound_5.ogg"
 data_brick2 = pygame.mixer.Sound(data_soundFile5)
-#Block Hit List
-data_brickHits = (data_brick1,data_brick2)
-#Paddle Hit
+# Block Hit List
+data_brickHits = (data_brick1, data_brick2)
+# Paddle Hit
 data_soundFile6 = "Resources/Sound_6.ogg"
 data_paddleHitSound = pygame.mixer.Sound(data_soundFile6)
 data_paddleHitSound.set_volume(0.6)
+# Button Release
+data_soundFile7 = "Resources/Sound_7.ogg"
+data_buttonRelease = pygame.mixer.Sound(data_soundFile7)
+data_buttonRelease.set_volume(0.6)
+# Hard Brick Hit
+data_soundFile8 = "Resources/Sound_8.ogg"
+data_hardBrick = pygame.mixer.Sound(data_soundFile8)
 
-def playLevelMusic(musicFile,loop = -1,start = 0,volume = 1.0):
+
+def playLevelMusic(musicFile, loop=-1, start=0, volume=1.0):
     pygame.mixer.music.load(musicFile)
     pygame.mixer.music.set_volume(volume)
-    pygame.mixer.music.play(loop,start)
-
+    pygame.mixer.music.play(loop, start)
 
 
 ################################################### ---INPUT---####################################3
@@ -111,27 +118,49 @@ data_mousePressedPos = ()
 # ###############################################3---LEVEL---##################################33
 
 data_currentLevel = []
-data_lvlLayout = [[[], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
-                  [[], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
-                  [[], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
-                  [[], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
-                  [[], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
-                  [[], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
-                  [[], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
-                  [[], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
-                  [[], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
-                  [[], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
-                  [[], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
-                  [[], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
-                  [[], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
-                  [[], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
-                  [[], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
-                  [[], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
-                  [[], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
-                  [[], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
-                  [[], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
-                  [[], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
-                  [[], [], [], [], [], [], [], [], [], [], [], [], [], [], []]]
+data_lvlLayout = [
+    [[None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None],
+     [None]],
+    [[None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None],
+     [None]],
+    [[None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None],
+     [None]],
+    [[None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None],
+     [None]],
+    [[None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None],
+     [None]],
+    [[None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None],
+     [None]],
+    [[None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None],
+     [None]],
+    [[None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None],
+     [None]],
+    [[None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None],
+     [None]],
+    [[None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None],
+     [None]],
+    [[None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None],
+     [None]],
+    [[None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None],
+     [None]],
+    [[None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None],
+     [None]],
+    [[None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None],
+     [None]],
+    [[None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None],
+     [None]],
+    [[None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None],
+     [None]],
+    [[None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None],
+     [None]],
+    [[None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None],
+     [None]],
+    [[None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None],
+     [None]],
+    [[None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None],
+     [None]],
+    [[None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None],
+     [None]]]
 
 data_level1 = [
     [[[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(YELLOW)], "-", 1], [[(GREEN)], "-", 1],
@@ -144,10 +173,10 @@ data_level1 = [
      [[(DARKRED)], "-", 1], [[(GRAY)], "-", 1], [[(DARKRED)], "-", 1],
      [[(DARKGREEN)], "-", 1], [[(GREEN)], "-", 1], [[(YELLOW)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1],
      [[(ORANGE)], "-", 1]],
-    [[], [], [[(ORANGE)], "-", 1], [[(YELLOW)], "-", 1], [[(GREEN)], "-", 1], [[(DARKGREEN)], "-", 1],
+    [[None], [None], [[(ORANGE)], "-", 1], [[(YELLOW)], "-", 1], [[(GREEN)], "-", 1], [[(DARKGREEN)], "-", 1],
      [[(DARKRED)], "-", 1],
      [[(GRAY)], "-", 1], [[(DARKRED)], "-", 1],
-     [[(DARKGREEN)], "-", 1], [[(GREEN)], "-", 1], [[(YELLOW)], "-", 1], [([(ORANGE)]), "-", 1], [], []],
+     [[(DARKGREEN)], "-", 1], [[(GREEN)], "-", 1], [[(YELLOW)], "-", 1], [([(ORANGE)]), "-", 1], [None], [None]],
     [[[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1], [[(YELLOW)], "-", 1], [[(GREEN)], "-", 1],
      [[(DARKGREEN)], "-", 1],
      [[(DARKRED)], "-", 1], [[(GRAY)], "-", 1], [[(DARKRED)], "-", 1],
@@ -175,18 +204,64 @@ data_level1 = [
      [[(ORANGE)], "-", 1]]]
 
 data_level2 = [
-    [[[(GREEN)], "-", 1], [], [], [], [], [], [[(GREEN)], "-", 1], [], [],
-     [[(GREEN)], "-", 1], [], [], [], [], []],
-    [[[(GREEN)], "-", 1], [], [], [], [], [], [], [], [[(GREEN)], "-", 1], [], [], [], [], [],
-     [[(ORANGE)], "-", 1]],
-    [[[(GREEN)], "-", 1], [], [], [], [], [], [], [], [[(GREEN)], "-", 1], [], [], [], [], [],
-     [[(ORANGE)], "-", 1]],
-    [[[(GREEN)], "-", 1], [], [], [], [], [], [], [], [[(GREEN)], "-", 1], [], [], [], [], [],
-     [[(ORANGE)], "-", 1]],
-    [[[(GREEN)], "-", 1], [], [], [], [], [], [], [], [[(GREEN)], "-", 1], [], [], [], [], [],
-     [[(ORANGE)], "-", 1]],
-    [[[(GREEN)], "-", 1], [], [], [], [], [], [], [], [[(GREEN)], "-", 1], [], [], [], [], [],
-     [[(ORANGE)], "-", 1]]]
+    [[[(255, 255, 0)], '-', 1], [[(255, 255, 0)], '-', 1], [[(255, 255, 0)], '-', 1], [[(255, 255, 0)], '-', 1],
+     [[(80, 200, 120)], '-', 1], [[(255, 255, 0)], '-', 1], [[(255, 255, 0)], '-', 1], [None], [[(139, 0, 0)], '-', 1],
+     [None], [None], [None], [None], [None], [None]],
+    [[[(255, 255, 0)], '-', 1], [[(255, 102, 0)], '-', 1], [[(255, 102, 0)], '-', 1], [[(139, 0, 0)], '-', 1],
+     [[(255, 255, 0)], '-', 1], [[(255, 255, 0)], '-', 1], [None], [None], [None], [[(255, 102, 0)], '-', 1],
+     [[(255, 255, 0)], '-', 1], [None], [None], [None], [None]],
+    [[[(255, 255, 0)], '-', 1], [[(255, 255, 0)], '-', 1], [[(255, 255, 0)], '-', 1], [[(255, 255, 0)], '-', 1], [None],
+     [None], [None], [None], [None], [None], [None], [[(0, 155, 0)], '-', 1], [None], [None], [None]],
+    [[[(255, 255, 0)], '-', 1], [[(255, 255, 0)], '-', 1], [[(255, 102, 0)], '-', 1], [None], [None], [None], [None],
+     [None], [None], [None], [None], [None], [[(255, 255, 0)], '-', 1], [None], [None]],
+    [[[(139, 0, 0)], '-', 1], [[(70, 70, 70)], '-', 1], [None], [None], [None], [None], [[(255, 102, 0)], '-', 1],
+     [[(255, 255, 0)], '-', 1], [[(139, 0, 0)], '-', 1], [[(255, 102, 0)], '-', 1], [None], [None], [None], [None],
+     [None]],
+    [[[(255, 255, 0)], '-', 1], [None], [None], [None], [None], [[(255, 102, 0)], '-', 1], [None], [None], [None],
+     [None], [None], [None], [None], [[(255, 255, 0)], '-', 1], [[(255, 255, 0)], '-', 1]],
+    [[[(255, 255, 0)], '-', 1], [None], [None], [None], [None], [[(255, 255, 0)], '-', 1], [None], [None], [None],
+     [[(255, 102, 0)], '-', 1], [None], [[(255, 255, 0)], '-', 1], [[(192, 192, 192)], '-', 1], [None], [None]],
+    [[None], [None], [None], [None], [None], [None], [None], [[(255, 255, 0)], '-', 1], [None], [None], [None], [None],
+     [[(255, 255, 0)], '-', 1], [None], [None]],
+    [[None], [None], [None], [None], [None], [[(255, 255, 0)], '-', 1], [[(255, 255, 0)], '-', 1],
+     [[(0, 155, 0)], '-', 1], [None], [[(255, 102, 0)], '-', 1], [None], [None], [[(139, 0, 0)], '-', 1], [None],
+     [None]], [[None], [[(255, 255, 0)], '-', 1], [None], [None], [[(255, 255, 0)], '-', 1], [None], [None],
+               [[(255, 255, 0)], '-', 1], [None], [None], [None], [None], [None], [[(255, 0, 0)], '-', 1], [None]],
+    [[None], [[(136, 136, 136)], '-', 1], [None], [None], [[(255, 0, 127)], '-', 1], [None], [None],
+     [[(0, 155, 0)], '-', 1], [None], [[(255, 255, 0)], '-', 1], [None], [None], [None], [None],
+     [[(255, 0, 0)], '-', 1]],
+    [[None], [[(255, 102, 0)], '-', 1], [None], [None], [[(255, 255, 0)], '-', 1], [None], [None],
+     [[(255, 0, 0)], '-', 1], [None], [None], [None], [None], [None], [None], [None]],
+    [[None], [[(255, 255, 0)], '-', 1], [None], [None], [[(255, 255, 0)], '-', 1], [None], [None],
+     [[(212, 175, 55)], '-', 1], [None], [[(255, 255, 0)], '-', 1], [None], [[(255, 255, 0)], '-', 1], [None], [None],
+     [None]], [[None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None],
+               [[(255, 102, 0)], '-', 1], [None], [[(255, 255, 0)], '-', 1]],
+    [[None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None],
+     [[(255, 255, 0)], '-', 1], [None]],
+    [[None], [[(255, 255, 0)], '-', 1], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None],
+     [None], [None], [[(255, 255, 0)], '-', 1]],
+    [[None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None],
+     [None]],
+    [[None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None],
+     [None]],
+    [[None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None],
+     [None]],
+    [[None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None],
+     [None]],
+    [[None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None],
+     [None]],
+    [[None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None],
+     [None]],
+    [[None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None],
+     [None]],
+    [[None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None],
+     [None]],
+    [[None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None],
+     [None]],
+    [[None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None],
+     [None]],
+    [[None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None],
+     [None]]]
 
 # isLevel is needed for updating the level sprites. it should be set back to false by the level GUI when level is over
 data_isLevel = False
@@ -216,6 +291,7 @@ def isLevelHandler(level):
         return data_isLevel2
     elif level > 2:
         return data_isLevel2
+
 
 def gamemodeChanger(gamemode):
     global data_state

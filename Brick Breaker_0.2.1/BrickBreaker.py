@@ -97,8 +97,8 @@ def main():
         main_Vars.screen.blit(main_Vars.data_backGround, (0, 0))
         if main_Vars.data_isLevel:
             main_Vars.screen.blit(main_Vars.data_paddleGround, (0, main_Vars.data_paddleY))
-            main_Vars.screen.blit(main_Vars.data_foreGround, (0, 0))
             main_Vars.screen.blit(main_Vars.data_ballGround, (0,0))
+            main_Vars.screen.blit(main_Vars.data_foreGround, (0, 0))
         main_Vars.screen.blit(main_Vars.data_buttonGround, (0, 0))
         main_Vars.screen.blit(main_Vars.data_textGround, (0, 0))
         pygame.display.update(main_Vars.data_rect)
