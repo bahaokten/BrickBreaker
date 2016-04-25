@@ -23,10 +23,12 @@ def doGame():
             main_Handler.levelCreator(1)
         elif main_Vars.data_state == "level2":
             main_Handler.levelCreator(2)
+        elif main_Vars.data_state == "level3":
+            main_Handler.levelCreator(3)
         elif main_Vars.data_state == "gameoverbad":
             main_Vars.data_isLevel = False
         if "level" in main_Vars.data_state:
-            main_Vars.playLevelMusic(main_Vars.data_musicFile1,volume = 0.5)
+            main_Vars.playLevelMusic(main_Vars.data_musicFile1,volume = 0.75)
         main_Vars.data_tick1 = True
     if main_Vars.data_isLevel:
         main_Vars.data_spriteGroup_paddle.update()

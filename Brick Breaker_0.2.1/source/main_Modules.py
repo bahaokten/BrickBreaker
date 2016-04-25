@@ -78,3 +78,24 @@ def length(pos1,pos2):
 
 def objMid(X1, Y1, W, H):
     return X1 - (W / 2), Y1 - (H / 2)
+
+#INTERSECTION MODULE *TAKEN FROM INTERNET
+
+def line(p1, p2):
+    A = (p1[1] - p2[1])
+    B = (p2[0] - p1[0])
+    C = (p1[0]*p2[1] - p2[0]*p1[1])
+    return A, B, -C
+
+def intersection(p1,p2):
+    L1 = line(p1[0], p1[1])
+    L2 = line(p2[0], p2[1])
+    D  = L1[0] * L2[1] - L1[1] * L2[0]
+    Dx = L1[2] * L2[1] - L1[1] * L2[2]
+    Dy = L1[0] * L2[2] - L1[2] * L2[0]
+    if D != 0:
+        x = Dx / D
+        y = Dy / D
+        return x,y
+    else:
+        return False

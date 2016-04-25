@@ -12,12 +12,13 @@ class Brick(pygame.sprite.Sprite):
         self.powerup = powerup
         self.lives = lives
         self.colorList = colorList
+        print self.colorList
         self.width = main_Vars.data_brickSizeX
         self.height = main_Vars.data_brickSizeY
         self.outline = 6
         self.X = self.col * self.width
         self.Y = self.row * self.height + main_Vars.data_brickYMargin
-        self.rect = []
+        self.rect = pygame.Rect(self.X,self.Y,self.width,self.height)
         # color list example ((0,20,20),(255,0,0))
         #                        last     first     lives
         self.currentColor = colorList[self.lives - 1]
@@ -35,6 +36,9 @@ class Brick(pygame.sprite.Sprite):
 
     def getMid(self):
         return (self.X+self.width/2,self.Y+self.height/2)
+
+    def ballTrigger(self):
+        None
 
     def create(self):
         self.image = pygame.Surface([self.width + self.outline, self.height + self.outline])

@@ -107,14 +107,19 @@ def selected():
     if selectedBrick != []:
         if cPress:
             for i in xrange(len(colorList) - 1):
-                if [colorList[i]] == brickList[selectedBrick[0]][selectedBrick[1]][0]:
-                    brickList[selectedBrick[0]][selectedBrick[1]][0] = [colorList[i + 1]]
+                if colorList[i] == brickList[selectedBrick[0]][selectedBrick[1]][0][0]:
+                    if brickList[selectedBrick[0]][selectedBrick[1]][2] == -1:
+                         brickList[selectedBrick[0]][selectedBrick[1]][0] = [colorList[i + 1]]
+                    else:
+                        brickList[selectedBrick[0]][selectedBrick[1]][0] = []
+                        for n in xrange(brickList[selectedBrick[0]][selectedBrick[1]][2]):
+                            brickList[selectedBrick[0]][selectedBrick[1]][0].append(colorList[i + 1])
                     print("$ row:", selectedBrick[0], "col:", selectedBrick[1], "Lives = ",
                           brickList[selectedBrick[0]][selectedBrick[1]][2], "Powerup =",
                           brickList[selectedBrick[0]][selectedBrick[1]][1])
                     return
             brickList[selectedBrick[0]][selectedBrick[1]][0] = [colorList[0]]
-        if lives != False:
+        elif lives != False:
             if lives == "+":
                 if brickList[selectedBrick[0]][selectedBrick[1]][2] == -1:
                     brickList[selectedBrick[0]][selectedBrick[1]][2] = 1
@@ -130,7 +135,6 @@ def selected():
         print("$ row:", selectedBrick[0], "col:", selectedBrick[1], "Lives = ",
               brickList[selectedBrick[0]][selectedBrick[1]][2], "Powerup =",
               brickList[selectedBrick[0]][selectedBrick[1]][1])
-
 
 def main():
     global initial

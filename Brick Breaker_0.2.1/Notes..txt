@@ -32,3 +32,185 @@ remaining sprites to complete:
 brick
 ball(collision mechanics? Elastic collision? Simple collision or collision with angular momentum?)
 Angular momentum olmazsa ball belli patternde loopa girebilir.
+
+
+
+                    """
+                            else:
+                                self.velX = -self.velX
+                                self.X += self.velX
+                                self.Y += self.velY
+                                self.cooldown = self.cooldownTimer"""
+                    """
+                    side = self._get_collided_side(chosenbrick)
+                    if tmpMid[1]+(main_Vars.data_brickSizeY/2) > midY > tmpMid[1]-(main_Vars.data_brickSizeY/2):
+                        if midX < tmpMid[0]-(main_Vars.data_brickSizeX/2) or midX > tmpMid[0]+(main_Vars.data_brickSizeX/2):
+                            print "left/right"
+                            self.velX = -self.velX
+                            self.X += self.velX
+                            self.Y += self.velY
+                            self.cooldown = self.cooldownTimer
+                    elif tmpMid[0]+(main_Vars.data_brickSizeX/2) > midX > tmpMid[0]-(main_Vars.data_brickSizeX/2):
+                        if (midY < tmpMid[1]-(main_Vars.data_brickSizeY/2)) or(midY > tmpMid[1]+(main_Vars.data_brickSizeY/2)):
+                            print "up/down"
+                            self.velY = -self.velY
+                            self.X += self.velX
+                            self.Y += self.velY
+                            self.cooldown = self.cooldownTimer
+                    elif side == "TOP" or "BOTTOM":
+                        self.velY = -self.velY
+                        self.cooldown = self.cooldownTimer
+                    elif side == "RIGHT" or "LEFT":
+                        self.velX = -self.velX
+                        self.cooldown = self.cooldownTimer
+                    """
+                    """
+                    for sprites in tmpsprites:
+                        if (self.prevY < sprites.rect.centery) and (self.prevX < (sprites.rect.right + self.size/2)) and (self.prevX > (sprites.rect.left - self.size/2)):
+                            vertical = True
+                        elif (self.prevY > sprites.rect.centery) and (self.prevX < (sprites.rect.right +  self.size/2)) and (self.prevX > (sprites.rect.left - self.size/2)):
+                            vertical = True
+                        elif (self.prevX < sprites.rect.centerx) and (self.prevY < (sprites.rect.bottom + self.size/2)) and (self.prevY > (sprites.rect.top - self.size/2)):
+                            horizontal = True
+                        elif (self.prevX > sprites.rect.centerx) and (self.prevY < (sprites.rect.bottom + self.size/2)) and (self.prevY > (sprites.rect.top - self.size/2)):
+                            horizontal = True
+                    if horizontal:
+                        self.velX = -self.velX
+                        self.cooldown = self.cooldownTimer
+                    if vertical:
+                        self.velY = -self.velY
+                        self.cooldown = self.cooldownTimer
+
+                    # capraz da burada yapilabilir
+                    if (midY > slope* midX + main_Modules.linearEquation(
+                            (tmpMid[0] - (main_Vars.data_brickSizeX / 2), tmpMid[1] - (main_Vars.data_brickSizeY / 2)),
+                            slope) and midY < -slope * midX + main_Modules.linearEquation(
+                        (tmpMid[0] - (main_Vars.data_brickSizeX / 2), tmpMid[1] + (main_Vars.data_brickSizeY / 2)),
+                        -slope)):
+                        # SOL
+                        # self.X -= (tmpMid[0]-(main_Vars.data_brickSizeX/2)-self.X) + 3
+                        self.velX = -self.velX
+                        self.cooldown = 10
+                    elif (midY > -slope * midX + main_Modules.linearEquation(
+                            (tmpMid[0] + (main_Vars.data_brickSizeX / 2), tmpMid[1] - (main_Vars.data_brickSizeY / 2)),
+                            -slope) and midY < slope * midX + main_Modules.linearEquation(
+                        (tmpMid[0] + (main_Vars.data_brickSizeX / 2), tmpMid[1] + (main_Vars.data_brickSizeY / 2)),
+                        slope)):
+                        # SAg
+                        # self.X += (self.X-tmpMid[0]-(main_Vars.data_brickSizeX/2)) + 3
+                        self.velX = -self.velX
+                        self.cooldown = 10
+                    else:
+                        self.velY= -self.velY
+                        self.cooldown = 10
+                    """
+
+                    """
+                    if midX < tmpMid[0]-(main_Vars.data_brickSizeX/2) or midX > tmpMid[0]+(main_Vars.data_brickSizeX/2):
+                            self.velX = -self.velX
+                            self.cooldown = 5
+                    """
+                    """
+                    #CHANGE COLLISION INTO PREDICT AND COLLIDE WITH POINT OBJECT NOT 2D SPRITE
+                    if tmpMid[1]+(main_Vars.data_brickSizeY/2) > midY > tmpMid[1]-(main_Vars.data_brickSizeY/2):
+                        if midX < tmpMid[0]-(main_Vars.data_brickSizeX/2) or midX > tmpMid[0]+(main_Vars.data_brickSizeX/2):
+                            print "left/right"
+                            self.velX = -self.velX
+                            self.X += self.velX
+                            self.Y += self.velY
+                            self.cooldown = self.cooldownTimer
+                    elif tmpMid[0]+(main_Vars.data_brickSizeX/2) > midX > tmpMid[0]-(main_Vars.data_brickSizeX/2):
+                        if (midY < tmpMid[1]-(main_Vars.data_brickSizeY/2)) or(midY > tmpMid[1]+(main_Vars.data_brickSizeY/2)):
+                            print "up/down"
+                            self.velY = -self.velY
+                            self.X += self.velX
+                            self.Y += self.velY
+                            self.cooldown = self.cooldownTimer
+                    else:
+                        #bunun yerine kosegenle kesisim testi yap
+                        s =3.90625
+                        sNeg = -s
+                        s2 = self.velY/self.velX
+                        if (midX < tmpMid[0]-(main_Vars.data_brickSizeX/2) and midY > tmpMid[1]+(main_Vars.data_brickSizeY/2)) or (midX > tmpMid[0]+(main_Vars.data_brickSizeX/2) and midY < tmpMid[1]-(main_Vars.data_brickSizeY/2)):
+                            #bottom left / top right
+                            print "capraz test"
+                            c1 = main_Modules.linearEquation((tmpMid[0]-(main_Vars.data_brickSizeX/2),tmpMid[1]-(main_Vars.data_brickSizeY/2)),sNeg)
+                            p1 = ([tmpMid[0],tmpMid[1]],[0,c1]) #brick point
+                            c2 = main_Modules.linearEquation((midX,midY),s2)
+                            p2 = ([midX,midY],[tmpMid[0],tmpMid[0]*s2+c2])
+                            intersect = main_Modules.intersection(p1,p2)
+                            if (midY < -s * midX + main_Modules.linearEquation(
+                                (tmpMid[0] - (main_Vars.data_brickSizeX / 2), tmpMid[1] + (main_Vars.data_brickSizeY / 2)),
+                                -s)) or (midY > -slope * midX + main_Modules.linearEquation(
+                            (tmpMid[0] + (main_Vars.data_brickSizeX / 2), tmpMid[1] - (main_Vars.data_brickSizeY / 2)),
+                            -slope)):
+                                #top right/bottomleft
+                                print "topright/bottomleft"
+                                if intersect == False:
+                                    self.velX = -self.velX
+                                    self.X += self.velX
+                                    self.Y += self.velY
+                                    self.cooldown = self.cooldownTimer
+                                else:
+                                    self.velY = -self.velY
+                                    self.X += self.velX
+                                    self.Y += self.velY
+                                    self.cooldown = self.cooldownTimer
+                            else:
+                                if intersect != False:
+                                    self.velX = -self.velX
+                                    self.X += self.velX
+                                    self.Y += self.velY
+                                    self.cooldown = self.cooldownTimer
+                                else:
+                                    self.velY = -self.velY
+                                    self.X += self.velX
+                                    self.Y += self.velY
+                                    self.cooldown = self.cooldownTimer
+
+                        else:
+                            #top left bottom right
+                            print "top left/bottom right"
+                            c1 = main_Modules.linearEquation((tmpMid[0]-(main_Vars.data_brickSizeX/2),tmpMid[1]-(main_Vars.data_brickSizeY/2)),s)
+                            p1 = ([tmpMid[0]-(main_Vars.data_brickSizeX/2),tmpMid[1]-(main_Vars.data_brickSizeY/2)],[0,c1]) #brick point
+                            c2 = main_Modules.linearEquation((midX,midY),s2)
+                            p2 = ([midX,midY],[tmpMid[0],tmpMid[0]*s2+c2])
+                            intersect = main_Modules.intersection(p1,p2)
+                            if (midY > slope* midX + main_Modules.linearEquation(
+                            (tmpMid[0] - (main_Vars.data_brickSizeX / 2), tmpMid[1] - (main_Vars.data_brickSizeY / 2)),
+                            slope)) or (midY < slope * midX + main_Modules.linearEquation(
+                        (tmpMid[0] + (main_Vars.data_brickSizeX / 2), tmpMid[1] + (main_Vars.data_brickSizeY / 2)),
+                        slope)):
+                                #top left
+                                if intersect == False:
+                                    self.velX = -self.velX
+                                    self.X += self.velX
+                                    self.Y += self.velY
+                                    self.cooldown = self.cooldownTimer
+                                else:
+                                    self.velY = -self.velY
+                                    self.X += self.velX
+                                    self.Y += self.velY
+                                    self.cooldown = self.cooldownTimer
+                            else:
+                                if intersect != False:
+                                    self.velX = -self.velX
+                                    self.X += self.velX
+                                    self.Y += self.velY
+                                    self.cooldown = self.cooldownTimer
+                                else:
+                                    self.velY = -self.velY
+                                    self.X += self.velX
+                                    self.Y += self.velY
+                                    self.cooldown = self.cooldownTimer
+
+                    # CAPRAZ
+            """
+
+
+
+            """
+            interesting effect
+            if self.Y < 0:
+                self.velY = -self.velY
+            """

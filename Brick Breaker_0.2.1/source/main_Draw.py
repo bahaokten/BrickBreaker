@@ -82,14 +82,13 @@ def drawLevelBackground(num):
             pos = (random.randint(5, main_Vars.data_canvasX), random.randint(5, main_Vars.data_canvasY - 70))
             pygame.draw.circle(main_Vars.data_backGround, color, pos, radius)
         apart = 3
-        """
         for i in xrange(int(main_Vars.data_canvasY / apart)):
             pygame.draw.line(main_Vars.data_backGround, main_Vars.LIGHTBLACK, (0, i * apart),
                              (main_Vars.data_canvasX, i * apart), 2)
         for i in xrange(int(main_Vars.data_canvasX / apart)):
-            pygame.draw.line(main_Vars.data_backGround, main_Vars.BLUE, (i*apart, 0),
+            pygame.draw.line(main_Vars.data_backGround, main_Vars.BLACK, (i*apart, 0),
                              (i*apart,main_Vars.data_canvasY), 1)
-        """
+
 
 
 """
@@ -208,17 +207,17 @@ def drawLevelSelectMenu(page, level1, level2=0, level3=0, level4=0, level5=0, le
 
 def drawLevelSelect(level, x, y):
     # width = 195 height = 130
-    pygame.draw.rect(main_Vars.data_buttonGround, (90, 116, 149), (x, y, 13 * 15, 5 * 26))
-    drawLevel(level, 13, 5, False, x, y, 1)
-    pygame.draw.rect(main_Vars.data_buttonGround, main_Vars.BLACK, (x, y, 13 * 15, 5 * 26), 3)
+    pygame.draw.rect(main_Vars.data_buttonGround, (90, 116, 149), (x, y, (64/5) * 15, 5 * 26))
+    drawLevel(level, marginY= False, addX=x, addY=y, outline =1)
+    pygame.draw.rect(main_Vars.data_buttonGround, main_Vars.BLACK, (x, y, (64/5) * 15, 5 * 26), 3)
     # drawLevel(main_Vars.data_level1,main_Vars.data_buttonground,64,25)
 
 
 def drawLockedLevel(x, y):
-    pygame.draw.rect(main_Vars.data_buttonGround, main_Vars.GRAY, (x, y, 13 * 15, 5 * 26))
+    pygame.draw.rect(main_Vars.data_buttonGround, main_Vars.GRAY, (x, y, (64/5) * 15, 5 * 26))
     for i in xrange(26):
-        pygame.draw.line(main_Vars.data_buttonGround, main_Vars.BLACK, (x, y + i * 5 + 2), (x + 195, y + i * 5 + 2), 2)
-    pygame.draw.rect(main_Vars.data_buttonGround, main_Vars.BLACK, (x, y, 13 * 15, 5 * 26), 3)
+        pygame.draw.line(main_Vars.data_buttonGround, main_Vars.BLACK, (x, y + i * 5 + 2), (x + 190, y + i * 5 + 2), 2)
+    pygame.draw.rect(main_Vars.data_buttonGround, main_Vars.BLACK, (x, y, (64/5) * 15, 5 * 26), 3)
     pygame.draw.arc(main_Vars.data_buttonGround, main_Vars.SILVER, (x + 125 / 2, y + 15, 70, 90), pi, 0, 7)
     pygame.draw.rect(main_Vars.data_buttonGround, main_Vars.GOLD, (x + 125 / 2 - 5, y + 60, 80, 52))
     pygame.draw.ellipse(main_Vars.data_buttonGround, main_Vars.LIGHTBLACK, (x + 125 / 2 + 27, y + 75, 16, 16))
@@ -229,9 +228,9 @@ def drawLockedLevel(x, y):
 def drawLevel(level, width=0, height=0, marginY=True, addX=0, addY=0, outline=5):
     lvl = main_Vars.levelHandler(level)  # gets the level
     if width == 0:
-        width = main_Vars.data_brickSizeX
+        width = main_Vars.data_brickSizeX/5
     if height == 0:
-        height = main_Vars.data_brickSizeY
+        height = main_Vars.data_brickSizeY/5
     if marginY == True:
         marginY = main_Vars.data_brickYMargin
     else:
@@ -248,9 +247,7 @@ def drawBrick(col, row, cl, width, height, marginY, addX, addY, outline):
     # Col(x) max = 0-14
     # Row(y) max = 0-25
     # global main_Vars.data_actionground
-    if col >= 15 or row >= 26:
-        return False
-    else:
+    if 1 == 1:
         pygame.draw.rect(main_Vars.data_buttonGround, cl[0],
                          (addX + col * width, addY + marginY + row * height, width, height))
         pygame.draw.rect(main_Vars.data_buttonGround, main_Vars.BLACK,
