@@ -46,13 +46,13 @@ def drawLevelMenu(page):
                               italic=True, size=60)
 
 
-def levelCreator(level):
+def levelCreator(level,background = 1):
     # isLevel is needed for updating the level sprites. it should be set back to false by the level GUI when level is over
     main_Vars.data_isLevel = True
     resetGeneral()
     tmp = main_Vars.levelHandler(level)
     main_Draw.drawLevelGUI()
-    main_Draw.drawLevelBackground(1)
+    main_Draw.drawLevelBackground(background)
     sprite_Brick.createLevelBricks(tmp)
     sprite_Paddle.paddleCreator()
     sprite_Ball.createBall(1)

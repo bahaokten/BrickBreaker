@@ -22,9 +22,9 @@ def doGame():
         elif main_Vars.data_state == "level1":
             main_Handler.levelCreator(1)
         elif main_Vars.data_state == "level2":
-            main_Handler.levelCreator(2)
+            main_Handler.levelCreator(2,background = 2)
         elif main_Vars.data_state == "level3":
-            main_Handler.levelCreator(3)
+            main_Handler.levelCreator(3,background = 3)
         elif main_Vars.data_state == "gameoverbad":
             main_Vars.data_isLevel = False
         if "level" in main_Vars.data_state:

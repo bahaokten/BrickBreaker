@@ -49,7 +49,8 @@ data_brickSizeX = 64
 data_brickSizeY = 25
 data_brickSizeXSelect = 13
 data_brickSizeYSelect = 5
-data_brickYMargin = 10
+data_brickYMargin = 5
+data_brickOutline = 6
 
 # ---BALL -- #
 data_spriteGroup_ball = pygame.sprite.Group()
@@ -179,6 +180,8 @@ data_ballGround = data_ballGround.convert_alpha()
 data_textGround = data_textGround.convert_alpha()
 data_backGround = data_backGround.convert()
 data_paddleGround.set_colorkey((1, 2, 3), RLEACCEL)
+data_brickImage = pygame.Surface([data_brickSizeX + data_brickOutline, data_brickSizeY+ data_brickOutline])
+data_brickImage = data_brickImage.convert_alpha()
 # data_foreGround.set_colorkey((1,2,3),RLEACCEL)
 
 ##########LEVELS###############################

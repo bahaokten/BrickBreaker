@@ -88,6 +88,35 @@ def drawLevelBackground(num):
         for i in xrange(int(main_Vars.data_canvasX / apart)):
             pygame.draw.line(main_Vars.data_backGround, main_Vars.BLACK, (i*apart, 0),
                              (i*apart,main_Vars.data_canvasY), 1)
+    elif num == 2:
+        apart = 5
+        main_Vars.data_backGround.fill((200,100,30))
+        for x in xrange(1,main_Vars.data_canvasX,10):
+            for y in xrange(1,main_Vars.data_canvasY,8):
+                x1 = random.randrange(x-15, x+15)
+                y1= random.randrange(y-10, y+10)
+                xh = random.randrange(50,150)
+                yh = random.randrange(30,90)
+                x2 = x1 + xh
+                y2 = y1 + yh
+                color = (random.randrange(150,250),random.randrange(80,150),random.randrange(20,50))
+                pygame.draw.line(main_Vars.data_backGround, color, (x1, y1), (x2, y2), 15)
+    elif num ==3:
+        for x in xrange(1,main_Vars.data_canvasX,10):
+            for y in xrange(1,main_Vars.data_canvasY,8):
+                x1 = random.randrange(x-15, x+15)
+                y1= random.randrange(y-10, y+10)
+                x2 = random.randrange(x+10, x+50)
+                y2= random.randrange(y+20, y+80)
+                x3 = random.randrange(x-55, x-15)
+                y3= random.randrange(y-40, y-10)
+                x4 = random.randrange(x-80, x+80)
+                y4= random.randrange(y-80, y+80)
+                color = (random.randrange(50,250),random.randrange(180,250),random.randrange(50,190))
+                pygame.draw.polygon(main_Vars.data_backGround, color, ((x1, y1), (x2, y2), (x3, y3),(x4,y4)))
+
+
+
 
 
 

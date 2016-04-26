@@ -214,6 +214,7 @@ class Ball(pygame.sprite.Sprite):
                 for sprite in main_Vars.data_spriteGroup_bricks.sprites():
                     if pygame.sprite.collide_rect(sprite, self):
                         tmpsprites.append(sprite)
+                        sprite.ballTrigger()
                 if len(tmpsprites) == 1:
                     play = random.choice(main_Vars.data_brickHits)
                     play.play(loops=0)
