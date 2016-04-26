@@ -12,7 +12,7 @@ class Ball(pygame.sprite.Sprite):
     # Constructor. Pass in the color of the block,
     # and its x and y position
     def __init__(self, ballnum, isAttached=True):
-        self.size = 500
+        self.size = 18
         self.radius = self.size / 2
         self.ballnum = ballnum
         self.X = main_Vars.data_canvasX / 2 - self.radius
@@ -31,6 +31,7 @@ class Ball(pygame.sprite.Sprite):
         self.cooldown = 0
         print "-ballnum:", self.ballnum, " -X:", self.X, " -Y:", self.Y, " -Radius:", self.radius
         print "-innerColor:", self.color, " -outlineColor:", self.outlineColor
+
 
     def update(self):
         main_Vars.data_rect.append((self.X - 8, self.Y - 8, self.size + 16, self.size + 16))
@@ -178,28 +179,30 @@ class Ball(pygame.sprite.Sprite):
         else:
             return False
 
-    def _brick_collision_subhandler(self, tmpMid, midX, midY, bricks, update=True):
-        if tmpMid[1] + (main_Vars.data_brickSizeY / 2) > midY > tmpMid[1] - (main_Vars.data_brickSizeY / 2):
-            if (midX < tmpMid[0] - (main_Vars.data_brickSizeX / 2)) or (
-                midX > tmpMid[0] + (main_Vars.data_brickSizeX / 2)):
+    def _brick_collision_subhandler(self, tmpMid, midX, midY, bricks, width,height,update=True):
+        if tmpMid[1] + (height / 2) > midY > tmpMid[1] - (height / 2):
+            if (midX < tmpMid[0] - (width / 2)) or (
+                midX > tmpMid[0] + (width / 2)):
                 if update:
                     self.velX = -self.velX
                     self.X += self.velX
                     self.Y += self.velY
                     self.cooldown = self.cooldownTimer
                     self._brick_collision_info(bricks, "Left/Right")
+                    self.hitbrick(bricks)
                 return "LR"
             else:
                 return False
-        elif tmpMid[0] + (main_Vars.data_brickSizeX / 2) > midX > tmpMid[0] - (main_Vars.data_brickSizeX / 2):
-            if (midY < tmpMid[1] - (main_Vars.data_brickSizeY / 2)) or (
-                midY > tmpMid[1] + (main_Vars.data_brickSizeY / 2)):
+        elif tmpMid[0] + (width / 2) > midX > tmpMid[0] - (width / 2):
+            if (midY < tmpMid[1] - (height / 2)) or (
+                midY > tmpMid[1] + (height / 2)):
                 if update:
                     self.velY = -self.velY
                     self.X += self.velX
                     self.Y += self.velY
                     self.cooldown = self.cooldownTimer
                     self._brick_collision_info(bricks, "Up/Down")
+                    self.hitbrick(bricks)
                 return "UD"
             else:
                 return False
@@ -225,32 +228,32 @@ class Ball(pygame.sprite.Sprite):
                         tmpsprites.append(sprite)
 
                 if len(tmpsprites) == 1:
-                    self.hitbrick(tmpsprites)
                     tmpMid = tmpsprites[0].getMid()
+                    width,height = tmpsprites[0].getSize()
                     midX = self.prevX + self.size / 2
                     midY = self.prevY + self.size / 2
 
-                    if not self._brick_collision_subhandler(tmpMid, midX, midY, tmpsprites):
+                    if not self._brick_collision_subhandler(tmpMid, midX, midY, tmpsprites,width,height):
                         s = 0.390625
                         sNeg = -s
                         s2 = self.velY / self.velX
-                        if ((midX < tmpMid[0] - (main_Vars.data_brickSizeX / 2)) and (
-                            midY > tmpMid[1] + (main_Vars.data_brickSizeY / 2))) or (
-                            (midX > tmpMid[0] + (main_Vars.data_brickSizeX / 2)) and (
-                            midY < tmpMid[1] - (main_Vars.data_brickSizeY / 2))):
+                        if ((midX < tmpMid[0] - (width / 2)) and (
+                            midY > tmpMid[1] + (height / 2))) or (
+                            (midX > tmpMid[0] + (width / 2)) and (
+                            midY < tmpMid[1] - (height / 2))):
                             # bottom left / top right
-                            c1 = main_Modules.linearEquation((tmpMid[0] - (main_Vars.data_brickSizeX / 2),
-                                                              tmpMid[1] - (main_Vars.data_brickSizeY / 2)), sNeg)
+                            c1 = main_Modules.linearEquation((tmpMid[0] - (width / 2),
+                                                              tmpMid[1] - (height / 2)), sNeg)
                             p1 = ([tmpMid[0], tmpMid[1]], [0, c1])  # brick point
                             c2 = main_Modules.linearEquation((midX, midY), s2)
                             p2 = ([midX, midY], [tmpMid[0], tmpMid[0] * s2 + c2])
                             intersect = main_Modules.intersection(p1, p2)
                             if (s2 < 0) and ((midY < -s * midX + main_Modules.linearEquation(
-                                    (tmpMid[0] - (main_Vars.data_brickSizeX / 2),
-                                     tmpMid[1] + (main_Vars.data_brickSizeY / 2)),
+                                    (tmpMid[0] - (width / 2),
+                                     tmpMid[1] + (height / 2)),
                                     -s)) or (midY > -s * midX + main_Modules.linearEquation(
-                                (tmpMid[0] + (main_Vars.data_brickSizeX / 2),
-                                 tmpMid[1] - (main_Vars.data_brickSizeY / 2)),
+                                (tmpMid[0] + (width / 2),
+                                 tmpMid[1] - (height / 2)),
                                 -s))):
                                 # top right/bottomleft
                                 if intersect == False:
@@ -258,11 +261,13 @@ class Ball(pygame.sprite.Sprite):
                                     self.X += self.velX
                                     self.Y += self.velY
                                     self.cooldown = self.cooldownTimer
+                                    self.hitbrick(tmpsprites)
                                 else:
                                     self.velY = -self.velY
                                     self.X += self.velX
                                     self.Y += self.velY
                                     self.cooldown = self.cooldownTimer
+                                    self.hitbrick(tmpsprites)
                                 self._brick_collision_info(tmpsprites, "TopRight/BottomLeft")
                             elif s2 < 0:
                                 if intersect != False:
@@ -270,29 +275,38 @@ class Ball(pygame.sprite.Sprite):
                                     self.X += self.velX
                                     self.Y += self.velY
                                     self.cooldown = self.cooldownTimer
+                                    self.hitbrick(tmpsprites)
                                 else:
                                     self.velY = -self.velY
                                     self.X += self.velX
                                     self.Y += self.velY
                                     self.cooldown = self.cooldownTimer
+                                    self.hitbrick(tmpsprites)
                                 self._brick_collision_info(tmpsprites, "TopRight/BottomLeft")
+                            else:
+                                self.velX = -self.velX
+                                self.velY = -self.velY
+                                self.X += self.velX
+                                self.Y += self.velY
+                                self.hitbrick(tmpsprites)
+                                print "NO COLLIDE"
                         else:
                             # top left bottom right
                             print "top left/bottom right"
-                            c1 = main_Modules.linearEquation((tmpMid[0] - (main_Vars.data_brickSizeX / 2),
-                                                              tmpMid[1] - (main_Vars.data_brickSizeY / 2)), s)
+                            c1 = main_Modules.linearEquation((tmpMid[0] - (width / 2),
+                                                              tmpMid[1] - (height / 2)), s)
                             p1 = (
-                            [tmpMid[0] - (main_Vars.data_brickSizeX / 2), tmpMid[1] - (main_Vars.data_brickSizeY / 2)],
+                            [tmpMid[0] - (width / 2), tmpMid[1] - (height / 2)],
                             [0, c1])  # brick point
                             c2 = main_Modules.linearEquation((midX, midY), s2)
                             p2 = ([midX, midY], [tmpMid[0], tmpMid[0] * s2 + c2])
                             intersect = main_Modules.intersection(p1, p2)
                             if (s2 > 0) and ((midY > s * midX + main_Modules.linearEquation(
-                                    (tmpMid[0] - (main_Vars.data_brickSizeX / 2),
-                                     tmpMid[1] - (main_Vars.data_brickSizeY / 2)),
+                                    (tmpMid[0] - (width / 2),
+                                     tmpMid[1] - (height / 2)),
                                     s)) or (midY < s * midX + main_Modules.linearEquation(
-                                (tmpMid[0] + (main_Vars.data_brickSizeX / 2),
-                                 tmpMid[1] + (main_Vars.data_brickSizeY / 2)),
+                                (tmpMid[0] + (width / 2),
+                                 tmpMid[1] + (height / 2)),
                                 s))):
                                 # top left
                                 if intersect == False:
@@ -300,11 +314,13 @@ class Ball(pygame.sprite.Sprite):
                                     self.X += self.velX
                                     self.Y += self.velY
                                     self.cooldown = self.cooldownTimer
+                                    self.hitbrick(tmpsprites)
                                 else:
                                     self.velY = -self.velY
                                     self.X += self.velX
                                     self.Y += self.velY
                                     self.cooldown = self.cooldownTimer
+                                    self.hitbrick(tmpsprites)
                                 self._brick_collision_info(tmpsprites, "TopLeft/BottomRight")
                             elif s2 > 0:
                                 if intersect != False:
@@ -312,12 +328,21 @@ class Ball(pygame.sprite.Sprite):
                                     self.X += self.velX
                                     self.Y += self.velY
                                     self.cooldown = self.cooldownTimer
+                                    self.hitbrick(tmpsprites)
                                 else:
                                     self.velY = -self.velY
                                     self.X += self.velX
                                     self.Y += self.velY
                                     self.cooldown = self.cooldownTimer
+                                    self.hitbrick(tmpsprites)
                                 self._brick_collision_info(tmpsprites, "TopLeft/BottomRight")
+                            else:
+                                self.velX = -self.velX
+                                self.velY = -self.velY
+                                self.X += self.velX
+                                self.Y += self.velY
+                                self.hitbrick(tmpsprites)
+                                print "NO COLLIDE"
                 elif tmpsprites != []:
                     self.hitbrick(tmpsprites)
                     updown = False
@@ -326,7 +351,8 @@ class Ball(pygame.sprite.Sprite):
                     midY = self.prevY + self.size / 2
                     for bricks in tmpsprites:
                         tmpMid = bricks.getMid()
-                        tmpUpdate = self._brick_collision_subhandler(tmpMid, midX, midY, bricks, update=False)
+                        width,height = bricks.getSize()
+                        tmpUpdate = self._brick_collision_subhandler(tmpMid, midX, midY, bricks, width,height,update=False)
                         if tmpUpdate == "UD":
                             updown = True
                         elif tmpUpdate == "LR":

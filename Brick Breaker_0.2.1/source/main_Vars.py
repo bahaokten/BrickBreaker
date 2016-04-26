@@ -52,6 +52,9 @@ data_brickSizeXSelect = 13
 data_brickSizeYSelect = 5
 data_brickYMargin = 5
 data_brickOutline = 6
+#Brick Images
+data_imgFile1 = "Resources/BigBrick.jpg"
+data_bigBrickImg = pygame.image.load(data_imgFile1)
 
 # ---BALL -- #
 data_spriteGroup_ball = pygame.sprite.Group()
@@ -267,7 +270,8 @@ data_level1 = [
      [[(DARKGREEN)], "-", 1],
      [[(DARKRED)], "-", 1], [[(GRAY)], "-", 1], [[(DARKRED)], "-", 1],
      [[(DARKGREEN)], "-", 1], [[(GREEN)], "-", 1], [[(YELLOW)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1],
-     [[(ORANGE)], "-", 1]]]
+     [[(ORANGE)], "-", 1]],[[[(GREEN),"big"], "-", 4], [None], [None], [None], [None], [[(GREEN),"big"], "-", 8], [None], [None], [None], [None], [None], [None], [None], [None],
+     [None]]]
 data_level2 = [[[[(255, 255, 0)], '-', 1], [None], [None], [None], [[(255, 255, 0)], '-', 1], [None], [None], [None],
                 [None], [None], [None], [None], [None], [None], [None]],
                [[[(255, 255, 0)], '-', 1], [None], [[(255, 255, 0)], '-', 1], [None], [[(255, 255, 0)], '-', 1],
