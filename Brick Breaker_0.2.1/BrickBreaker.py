@@ -90,16 +90,19 @@ def main():
 
         text = "Bricks Alpha 0.2 {" + "FPS: {0:.2f}   Playtime: {1:.2f}".format(clock.get_fps(), playtime) + "}"
         pygame.display.set_caption(text)
-        if main_Vars.data_isLevel:
-            main_Vars.data_paddleGround.fill((1, 2, 3))
-            main_Vars.data_ballGround.fill((0,0,0,0))
 
         doGame()
 
         main_Vars.screen.blit(main_Vars.data_backGround, (0, 0))
         if main_Vars.data_isLevel:
-            main_Vars.screen.blit(main_Vars.data_paddleGround, (0, main_Vars.data_paddleY))
-            main_Vars.screen.blit(main_Vars.data_ballGround, (0,0))
+            #main_Vars.screen.blit(main_Vars.data_paddleGround, (0, main_Vars.data_paddleY))
+            if main_Vars.data_paddleImg:
+                pos = main_Vars.data_spriteGroup_paddle.sprites()[0].info(posOnly = True)
+                main_Vars.screen.blit(main_Vars.data_paddleImg, pos)
+            if main_Vars.data_ballImg:
+                for ball in main_Vars.data_spriteGroup_ball:
+                    pos = ball.getPos()
+                    main_Vars.screen.blit(main_Vars.data_ballImg, pos)
             main_Vars.screen.blit(main_Vars.data_foreGround, (0, 0))
         main_Vars.screen.blit(main_Vars.data_buttonGround, (0, 0))
         main_Vars.screen.blit(main_Vars.data_textGround, (0, 0))

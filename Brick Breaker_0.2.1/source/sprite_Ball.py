@@ -7,11 +7,12 @@ import main_Vars
 import main_Modules
 
 
+
 class Ball(pygame.sprite.Sprite):
     # Constructor. Pass in the color of the block,
     # and its x and y position
     def __init__(self, ballnum, isAttached=True):
-        self.size = 18
+        self.size = 500
         self.radius = self.size / 2
         self.ballnum = ballnum
         self.X = main_Vars.data_canvasX / 2 - self.radius
@@ -47,7 +48,7 @@ class Ball(pygame.sprite.Sprite):
                     # FOURTH PART BRICK COLLISION
                     self._brick_collision_handler()
 
-        main_Vars.data_ballGround.blit(self.image, [self.X, self.Y])
+        #main_Vars.data_ballGround.blit(self.image, [self.X, self.Y])
         main_Vars.data_rect.append((self.X - 8, self.Y - 8, self.size + 16, self.size + 16))
 
     def _velocity_incrementer_handler(self):
@@ -70,8 +71,16 @@ class Ball(pygame.sprite.Sprite):
         pygame.draw.circle(self.image, self.outlineColor, (self.radius, self.radius), self.radius)
         pygame.draw.circle(self.image, self.color, (self.radius, self.radius), self.radius - 3)
         main_Vars.data_rect.append((self.X, self.Y, self.size, self.size))
-        main_Vars.data_ballGround.blit(self.image, [self.X, self.Y])
+        main_Vars.data_ballImg = self.image
+        #main_Vars.data_ballGround.blit(self.image, [self.X, self.Y])
         # main_Vars.data_foreGround.blit(self.image, [self.X, self.Y ])
+
+    def getPos(self):
+        return (self.X,self.Y)
+
+    def hitbrick(self,bricks):
+        for brick in bricks:
+            brick.ballTrigger()
 
     def _attached_handler(self):
         if main_Vars.data_left or main_Vars.data_right:
@@ -214,11 +223,9 @@ class Ball(pygame.sprite.Sprite):
                 for sprite in main_Vars.data_spriteGroup_bricks.sprites():
                     if pygame.sprite.collide_rect(sprite, self):
                         tmpsprites.append(sprite)
-                        sprite.ballTrigger()
-                if len(tmpsprites) == 1:
-                    play = random.choice(main_Vars.data_brickHits)
-                    play.play(loops=0)
 
+                if len(tmpsprites) == 1:
+                    self.hitbrick(tmpsprites)
                     tmpMid = tmpsprites[0].getMid()
                     midX = self.prevX + self.size / 2
                     midY = self.prevY + self.size / 2
@@ -312,6 +319,7 @@ class Ball(pygame.sprite.Sprite):
                                     self.cooldown = self.cooldownTimer
                                 self._brick_collision_info(tmpsprites, "TopLeft/BottomRight")
                 elif tmpsprites != []:
+                    self.hitbrick(tmpsprites)
                     updown = False
                     leftright = False
                     midX = self.prevX + self.size / 2

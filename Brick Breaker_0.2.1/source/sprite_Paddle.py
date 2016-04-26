@@ -34,8 +34,8 @@ class Paddle(pygame.sprite.Sprite):
             else:
                 self.X -= self.velX
                 main_Vars.data_rect.append((self.X, main_Vars.data_paddleY, 98 + self.add + self.velX, 21))
-            main_Vars.data_paddleGround.fill((1, 2, 3))
-            main_Vars.data_paddleGround.blit(self.image, [self.X, 0])
+            #main_Vars.data_paddleGround.fill((1, 2, 3))
+            #main_Vars.data_paddleGround.blit(self.image, [self.X, 0])
         elif main_Vars.data_right:
             if main_Vars.data_canvasX - self.X - self.add - 98 - self.velX < self.velX:
                 self.X = main_Vars.data_canvasX - self.add - 98
@@ -45,18 +45,18 @@ class Paddle(pygame.sprite.Sprite):
                 main_Vars.data_rect.append((self.X, main_Vars.data_paddleY, 98 + self.add + self.velX, 21))
                 self.X += self.velX
         main_Vars.data_paddleMidX = self.X + (98 + self.add) / 2
-        main_Vars.data_paddleGround.fill((1, 2, 3))
-        main_Vars.data_paddleGround.blit(self.image, [self.X, 0])
+        #main_Vars.data_paddleGround.fill((1, 2, 3))
+        #main_Vars.data_paddleGround.blit(self.image, [self.X, 0])
         self.rect.x = self.X
         self.rect.y = main_Vars.data_paddleY
 
     def create(self):
-        self.image = pygame.Surface([self.add + 98, 21])
+        self.image = pygame.Surface([self.add + 98, 21], pygame.SRCALPHA, 32)
         self.rect = self.image.get_rect()
         self.rect.x = self.X
         self.rect.y = main_Vars.data_paddleY
         # self.image = self.image.convert_alpha()
-        self.image.fill((1, 2, 3))
+        #self.image.fill((1, 2, 3))
         pygame.draw.ellipse(self.image, main_Vars.BLACK, (0, 0, 35, 20))
         pygame.draw.arc(self.image, (55, 55, 55), (0, 0, 35, 20), pi / 2, 3 * pi / 2, 3)
         pygame.draw.ellipse(self.image, main_Vars.BLACK, (self.add + 63, 0, 35, 20))
@@ -67,12 +67,15 @@ class Paddle(pygame.sprite.Sprite):
         pygame.draw.line(self.image, (55, 55, 55), (18, 0), (self.add + 80, 0), 5)
         pygame.draw.line(self.image, (55, 55, 55), (18, 20), (self.add + 80, 20), 5)
         main_Vars.data_rect.append((self.X, main_Vars.data_paddleY, 98 + self.add, 21))
-        main_Vars.data_paddleGround.fill((1, 2, 3))
-        main_Vars.data_paddleGround.blit(self.image, [self.X, 0])
-        # self.image.set_colorkey((1,2,3))
+        main_Vars.data_paddleImg = self.image
+        #main_Vars.data_paddleGround.fill((1, 2, 3))
+        #main_Vars.data_paddleGround.blit(self.image, [self.X, 0])
 
-    def info(self):
-        print(self.rect)
+    def info(self,posOnly = False):
+        if posOnly:
+            return (self.X,main_Vars.data_paddleY)
+        else:
+            return (self.rect)
 
 
 def paddleCreator():

@@ -43,6 +43,7 @@ data_spriteGroup_paddle = pygame.sprite.Group()
 data_paddleY = data_canvasY - 100
 data_paddleMidX = 0
 data_paddleWidth = 0
+data_paddleImg = False
 # ---BRICKS--#
 data_spriteGroup_bricks = pygame.sprite.Group()
 data_brickSizeX = 64
@@ -54,6 +55,7 @@ data_brickOutline = 6
 
 # ---BALL -- #
 data_spriteGroup_ball = pygame.sprite.Group()
+data_ballImg = False
 ###############################################################################################################################################3
 
 # ---FONTS&TEXTS&MUSIC---#
@@ -171,17 +173,14 @@ flags = DOUBLEBUF
 screen = pygame.display.set_mode((960, 700))
 data_backGround = pygame.Surface(screen.get_size())
 data_paddleGround = pygame.Surface((960, 21))
-data_ballGround = pygame.Surface(screen.get_size(), pygame.SRCALPHA, 32)
 data_foreGround = pygame.Surface(screen.get_size(), pygame.SRCALPHA, 32)
 data_buttonGround = pygame.Surface(screen.get_size(), pygame.SRCALPHA, 32)
 data_buttonGround = data_buttonGround.convert_alpha()
 data_textGround = pygame.Surface(screen.get_size(), pygame.SRCALPHA, 32)
-data_ballGround = data_ballGround.convert_alpha()
 data_textGround = data_textGround.convert_alpha()
 data_backGround = data_backGround.convert()
 data_paddleGround.set_colorkey((1, 2, 3), RLEACCEL)
-data_brickImage = pygame.Surface([data_brickSizeX + data_brickOutline, data_brickSizeY+ data_brickOutline])
-data_brickImage = data_brickImage.convert_alpha()
+
 # data_foreGround.set_colorkey((1,2,3),RLEACCEL)
 
 ##########LEVELS###############################

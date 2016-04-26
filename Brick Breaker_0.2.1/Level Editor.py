@@ -125,11 +125,11 @@ def selected():
                     brickList[selectedBrick[0]][selectedBrick[1]][2] = 1
                 else:
                     brickList[selectedBrick[0]][selectedBrick[1]][2] += 1
-                    brickList[selectedBrick[0]][selectedBrick[1]][0].append(
-                        brickList[selectedBrick[0]][selectedBrick[1]][0][0])
+                    #brickList[selectedBrick[0]][selectedBrick[1]][0].append(
+                        #brickList[selectedBrick[0]][selectedBrick[1]][0][0])
             elif lives == "-" and brickList[selectedBrick[0]][selectedBrick[1]][2] > 1:
                 brickList[selectedBrick[0]][selectedBrick[1]][2] -= 1
-                del brickList[selectedBrick[0]][selectedBrick[1]][0][-1]
+                #del brickList[selectedBrick[0]][selectedBrick[1]][0][-1]
             else:
                 brickList[selectedBrick[0]][selectedBrick[1]][2] = -1
         print("$ row:", selectedBrick[0], "col:", selectedBrick[1], "Lives = ",

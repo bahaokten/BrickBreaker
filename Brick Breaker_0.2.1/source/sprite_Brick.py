@@ -1,3 +1,5 @@
+import random
+
 import pygame
 
 import main_Vars
@@ -6,48 +8,53 @@ import main_Vars
 class Brick(pygame.sprite.Sprite):
     # Constructor. Pass in the color of the block,
     # and its x and y position
-    def __init__(self, col, row, colorList, powerup="", lives=1):
+    def __init__(self, col, row, setup, powerup="", lives=1):
         self.col = col
         self.row = row
         self.powerup = powerup
         self.lives = lives
-        self.colorList = colorList
-        print self.colorList
         self.width = main_Vars.data_brickSizeX
         self.height = main_Vars.data_brickSizeY
         self.outline = main_Vars.data_brickOutline
         self.X = self.col * self.width
         self.Y = self.row * self.height + main_Vars.data_brickYMargin
-        self.rect = pygame.Rect(self.X,self.Y,self.width,self.height)
-        self.brickNum = self.row*15+self.col
+        self.rect = pygame.Rect(self.X, self.Y, self.width, self.height)
+        self.brickNum = self.row * 15 + self.col
         # color list example ((0,20,20),(255,0,0))
         #                        last     first     lives
-        self.currentColor = colorList[self.lives - 1]
+        self.currentColor = setup[0]
         pygame.sprite.Sprite.__init__(self)
 
     def hurt(self):
         if self.lives == 1:
             pygame.sprite.Sprite.kill(self)
-            main_Vars.data_foreGround.fill((0), pygame.Rect(self.X - self.outline / 2, self.Y - self.outline / 2,self.width+self.outline,self.height+self.outline))
+            main_Vars.data_foreGround.fill((0), pygame.Rect(self.X - self.outline / 2, self.Y - self.outline / 2,
+                                                            self.width + self.outline, self.height + self.outline))
             for brick in main_Vars.data_spriteGroup_bricks:
-                if (brick.info() == self.brickNum-1) or (brick.info() == self.brickNum+1) or (brick.info() == self.brickNum-15) or (brick.info() == self.brickNum+15):
+                if (brick.info() == self.brickNum - 1) or (brick.info() == self.brickNum + 1) or (
+                    brick.info() == self.brickNum - 15) or (brick.info() == self.brickNum + 15) or (
+                    brick.info() == self.brickNum + 16) or (brick.info() == self.brickNum + 14) or (
+                    brick.info() == self.brickNum - 14) or (brick.info() == self.brickNum - 16):
                     brick.redraw()
-            #main_Vars.data_foreGround.blit(main_Vars.data_brickImage, [self.X - self.outline / 2, self.Y - self.outline / 2])
-            # drop powerup
+                    # main_Vars.data_foreGround.blit(main_Vars.data_brickImage, [self.X - self.outline / 2, self.Y - self.outline / 2])
+                    # drop powerup
         else:
             self.lives -= 1
-            self.currentColor = self.colorList[self.lives - 1]
             # redraw
-        main_Vars.data_rect.append((self.X - self.outline / 2, self.Y - self.outline / 2,self.width+self.outline,self.height+self.outline))
+        main_Vars.data_rect.append((self.X - self.outline / 2, self.Y - self.outline / 2, self.width + self.outline,
+                                    self.height + self.outline))
 
     def redraw(self):
         main_Vars.data_foreGround.blit(self.image, [self.X - self.outline / 2, self.Y - self.outline / 2])
-        main_Vars.data_rect.append((self.X - self.outline / 2, self.Y - self.outline / 2,self.width+self.outline,self.height+self.outline))
+        main_Vars.data_rect.append((self.X - self.outline / 2, self.Y - self.outline / 2, self.width + self.outline,
+                                    self.height + self.outline))
 
     def getMid(self):
-        return (self.X+self.width/2,self.Y+self.height/2)
+        return (self.X + self.width / 2, self.Y + self.height / 2)
 
     def ballTrigger(self):
+        play = random.choice(main_Vars.data_brickHits)
+        play.play(loops=0)
         self.hurt()
 
     def create(self):
