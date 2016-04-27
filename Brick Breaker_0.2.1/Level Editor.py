@@ -104,6 +104,7 @@ def drawBrick(col, row, cl, width, height, marginY, addX, addY, outline):
 
 def selected():
     global brickList
+    global lives
     if selectedBrick != []:
         if cPress:
             for i in xrange(len(colorList) - 1):
@@ -125,6 +126,7 @@ def selected():
                     brickList[selectedBrick[0]][selectedBrick[1]][2] = 1
                 else:
                     brickList[selectedBrick[0]][selectedBrick[1]][2] += 1
+                lives = False
                     #brickList[selectedBrick[0]][selectedBrick[1]][0].append(
                         #brickList[selectedBrick[0]][selectedBrick[1]][0][0])
             elif lives == "-" and brickList[selectedBrick[0]][selectedBrick[1]][2] > 1:
@@ -132,6 +134,7 @@ def selected():
                 #del brickList[selectedBrick[0]][selectedBrick[1]][0][-1]
             else:
                 brickList[selectedBrick[0]][selectedBrick[1]][2] = -1
+            lives = False
         print("$ row:", selectedBrick[0], "col:", selectedBrick[1], "Lives = ",
               brickList[selectedBrick[0]][selectedBrick[1]][2], "Powerup =",
               brickList[selectedBrick[0]][selectedBrick[1]][1])

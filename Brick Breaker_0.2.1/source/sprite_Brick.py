@@ -22,7 +22,7 @@ class Brick(pygame.sprite.Sprite):
         self.brickNum = self.row * 15 + self.col
         # color list example ((0,20,20),(255,0,0))
         #                        last     first     lives
-        self.currentColor = setup[0]
+        self.currentColor = list(setup[0])
         pygame.sprite.Sprite.__init__(self)
 
     def hurt(self):
@@ -39,6 +39,11 @@ class Brick(pygame.sprite.Sprite):
                     # main_Vars.data_foreGround.blit(main_Vars.data_brickImage, [self.X - self.outline / 2, self.Y - self.outline / 2])
                     # drop powerup
         else:
+            for i in xrange(3):
+                self.currentColor[i] = self.currentColor[i]*0.8
+            self.create()
+            self.image.blit(main_Vars.data_crackImg1,(0,0))
+            self.redraw()
             self.lives -= 1
             # redraw
         main_Vars.data_rect.append((self.X - self.outline / 2, self.Y - self.outline / 2, self.width + self.outline,
@@ -62,6 +67,7 @@ class Brick(pygame.sprite.Sprite):
 
     def create(self):
         self.image = pygame.Surface([self.width + self.outline, self.height + self.outline])
+        self.image = self.image.convert_alpha()
         self.rect = self.image.get_rect()
         pygame.draw.rect(self.image, main_Vars.BLACK, (0, 0, self.width + self.outline, self.height + self.outline))
         pygame.draw.rect(self.image, self.currentColor,
