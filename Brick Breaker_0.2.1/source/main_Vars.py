@@ -57,6 +57,12 @@ data_imgFile1 = "Resources/BigBrick.jpg"
 data_bigBrickImg = pygame.image.load(data_imgFile1)
 data_imgFile2 = "Resources/CrackBrick.png"
 data_crackImg1 = pygame.image.load(data_imgFile2)
+data_imgFile3 = "Resources/Brick.png"
+data_brickImg = pygame.image.load(data_imgFile3)
+data_imgFile4 = "Resources/MetalBrick.jpg"
+data_metalBrickImg = pygame.image.load(data_imgFile4)
+data_imgFile5 = "Resources/YusufBrick.jpg"
+data_yusufBrickImg = pygame.image.load(data_imgFile5)
 
 # ---BALL -- #
 data_spriteGroup_ball = pygame.sprite.Group()
@@ -78,6 +84,7 @@ pygame.mixer.pre_init(frequency=44100, size=-16, channels=2, buffer=2048)
 pygame.mixer.init()
 # Level Music = Stairs
 data_musicFile1 = "Resources/Music_1.ogg"
+data_musicFile2 = "Resources/Music_2.ogg"
 # Metal Block Hit
 data_soundFile1 = "Resources/Sound_1.ogg"
 data_metalBrick = pygame.mixer.Sound(data_soundFile1)
@@ -175,7 +182,7 @@ def gamemodeChanger(gamemode):
 # [["white","-",1]]
 # flags = FULLSCREEN | DOUBLEBUF
 flags = DOUBLEBUF
-screen = pygame.display.set_mode((960, 700))
+screen = pygame.display.set_mode((data_canvasX, data_canvasY))
 data_backGround = pygame.Surface(screen.get_size())
 data_paddleGround = pygame.Surface((960, 21))
 data_foreGround = pygame.Surface(screen.get_size(), pygame.SRCALPHA, 32)
@@ -187,6 +194,9 @@ data_backGround = data_backGround.convert()
 data_paddleGround.set_colorkey((1, 2, 3), RLEACCEL)
 data_crackImg1 = data_crackImg1.convert_alpha()
 data_crackImg1 = pygame.transform.scale(data_crackImg1, (data_brickSizeX, data_brickSizeY))
+data_brickImg = pygame.transform.scale(data_brickImg, (data_brickSizeX, data_brickSizeY))
+data_brickImage = pygame.Surface([data_brickSizeX + data_brickOutline, data_brickSizeY+ data_brickOutline])
+data_brickImage = data_brickImage.convert_alpha()
 # data_foreGround.set_colorkey((1,2,3),RLEACCEL)
 
 ##########LEVELS###############################
@@ -274,7 +284,7 @@ data_level1 = [
      [[(DARKRED)], "-", 1], [[(GRAY)], "-", 1], [[(DARKRED)], "-", 1],
      [[(DARKGREEN)], "-", 1], [[(GREEN)], "-", 1], [[(YELLOW)], "-", 1], [[(ORANGE)], "-", 1], [[(ORANGE)], "-", 1],
      [[(ORANGE)], "-", 1]],
-    [[[(GREEN), "big"], "-", 4], [None], [None], [None], [None], [[(GREEN), "big"], "-", 8], [None], [None], [None],
+    [[[(255, 0, 0), "yusuf"], '-', 8], [None], [None], [None], [None], [None], [None], [None], [None],
      [None], [None], [None], [None], [None],
      [None]]]
 data_level2 = [
@@ -319,11 +329,11 @@ data_level2 = [
     [[[(255, 255, 0)], '-', 1], [[(255, 255, 0)], '-', 1], [None], [None], [None], [None], [[(255, 255, 0)], '-', 1],
      [[(255, 255, 0)], '-', 1], [[(255, 255, 0)], '-', 1], [None], [None], [None], [None], [[(255, 255, 0)], '-', 1],
      [[(255, 255, 0)], '-', 1]],
-    [[[(255, 255, 0)], '-', 1], [[(255, 255, 0)], '-', 2], [None], [None], [None], [None], [[(255, 255, 0)], '-', 1],
-     [[(255, 255, 0)], '-', 1], [[(255, 255, 0)], '-', 1], [None], [None], [None], [None], [[(255, 255, 0)], '-', 1],
-     [[(255, 255, 0)], '-', 1]],
-    [[None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None],
-     [None]],
+    [[[(255, 255, 0)], '-', 2], [[(255, 255, 0)], '-', 2], [None], [None], [None], [None], [[(255, 255, 0)], '-', 2],
+     [[(255, 255, 0)], '-', 2], [[(255, 255, 0)], '-', 2], [None], [None], [None], [None], [[(255, 255, 0)], '-', 2],
+     [[(255, 255, 0)], '-', 2]],
+    [[[(70, 70, 70)], '-', -1], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None],
+     [[(70, 70, 70)], '-', -1]],
     [[None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None],
      [None]],
     [[None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None], [None],

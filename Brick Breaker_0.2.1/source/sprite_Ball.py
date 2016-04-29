@@ -27,7 +27,7 @@ class Ball(pygame.sprite.Sprite):
         self.totalVelSquared = math.pow(self.totalVel, 2)
         self.velX = 0
         self.velY = 0
-        self.cooldownTimer = 6
+        self.cooldownTimer = 3
         self.cooldown = 0
         print "-ballnum:", self.ballnum, " -X:", self.X, " -Y:", self.Y, " -Radius:", self.radius
         print "-innerColor:", self.color, " -outlineColor:", self.outlineColor
@@ -289,7 +289,6 @@ class Ball(pygame.sprite.Sprite):
                                 self.X += self.velX
                                 self.Y += self.velY
                                 self.hitbrick(tmpsprites)
-                                print "NO COLLIDE"
                         else:
                             # top left bottom right
                             print "top left/bottom right"
@@ -342,7 +341,6 @@ class Ball(pygame.sprite.Sprite):
                                 self.X += self.velX
                                 self.Y += self.velY
                                 self.hitbrick(tmpsprites)
-                                print "NO COLLIDE"
                 elif tmpsprites != []:
                     self.hitbrick(tmpsprites)
                     updown = False

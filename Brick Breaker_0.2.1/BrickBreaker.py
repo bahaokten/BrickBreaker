@@ -29,6 +29,8 @@ def doGame():
             main_Vars.data_isLevel = False
         if "level" in main_Vars.data_state:
             main_Vars.playLevelMusic(main_Vars.data_musicFile1,volume = 0.75)
+        elif "menu" in main_Vars.data_state:
+            main_Vars.playLevelMusic(main_Vars.data_musicFile2,volume = 0.75)
         main_Vars.data_tick1 = True
     if main_Vars.data_isLevel:
         main_Vars.data_spriteGroup_paddle.update()

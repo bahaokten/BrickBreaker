@@ -269,16 +269,25 @@ def drawLevel(level, width=0, height=0, marginY=True, addX=0, addY=0, outline=5)
     for row in xrange(rows):
         for col in xrange(cols):
             if lvl[row][col] != [None]:
-                drawBrick(col, row, lvl[row][col][0], width, height, marginY, addX, addY, outline)
+                drawBrick(col, row, lvl[row][col], width, height, marginY, addX, addY, outline)
 
 
-def drawBrick(col, row, cl, width, height, marginY, addX, addY, outline):
+def drawBrick(col, row, brick, width, height, marginY, addX, addY, outline):
     # Col(x) max = 0-14
     # Row(y) max = 0-25
     # global main_Vars.data_actionground
-    if 1 == 1:
-        pygame.draw.rect(main_Vars.data_buttonGround, cl[0],
+    setup = brick[0]
+    if len(setup) == 1:
+        pygame.draw.rect(main_Vars.data_buttonGround, setup[0],
                          (addX + col * width, addY + marginY + row * height, width, height))
         pygame.draw.rect(main_Vars.data_buttonGround, main_Vars.BLACK,
-                         (addX + col * width, addY + marginY + row * height, width, height),
+                         (addX + col * width, addY + marginY + row * height, width+outline/2, height+outline/2),
                          outline)
+    elif setup[1] == "big":
+        width2 = width*brick[2]
+        height2 = height*brick[2]
+        main_Vars.data_buttonGround.blit(main_Vars.data_bigBrickImg,(addX + col * width+outline, addY + marginY + row * height+outline),(0,0,width2-outline,height2-outline))
+        pygame.draw.rect(main_Vars.data_buttonGround, main_Vars.BLACK,
+                         (addX + col * width, addY + marginY + row * height, width2, height2),
+                         outline)
+
